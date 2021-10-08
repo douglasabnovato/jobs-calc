@@ -4,7 +4,7 @@
   "description": "Freelance Calculator",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon ." 
+    "dev": "nodemon ."
   },
   "repository": {
     "type": "git",
@@ -14,6 +14,7 @@
   "author": "@douglasabnovato",
   "license": "MIT",
   "dependencies": {
+    "ejs": "^3.1.6",
     "express": "^4.17.1"
   },
   "devDependencies": {

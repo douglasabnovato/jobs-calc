@@ -173,7 +173,7 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 * Comemore. 🎉 Você evoluiu 🚀
 
 ### Próxima aula
-
+ 
 * Spoiler
 * Participe da comunidade
 * Tire dúvidas, ajude outros devs e se envolva por lá
