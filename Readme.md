@@ -183,8 +183,8 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 
 ### Mission: Assistir aos cursos
 
-* [] NodeJS
-* [] NodeJS com EJS
+* [x] NodeJS
+* [x] NodeJS com EJS
 
 ## :memo: Licença
 
