@@ -21,7 +21,7 @@
   <img alt="dev.finances" src=".github/jobscalc.png" width="100%">
 </p>
 
-## 🚀 Tecnologias
+### 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
@@ -33,43 +33,42 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - Express
 - SQLite
 
-## 💻 Projeto
+### 💻 Projeto
+
+Construir o app de uma calculadora para trabalhos freelance, com servidor em NodeJS, EJS para template engine e SQLite como banco de dados. 
 
 O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer, onde é possível cadastrar e excluir jobs (projetos), obtendo uma estimativa de custo de cada job. Além disso, é possível traçar o valor da hora da pessoa que estará usando o sistema 💰
 
-## 🔖 Layout
+### 🔖 Layout
 
-Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
+Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
+É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
-
-
-
-Construir o app de uma calculadora para trabalhos freelance, com servidor em NodeJS, EJS para template engine e SQLite como banco de dados. 
  
-# Qual a proposta deste projeto?
+### Qual a proposta deste projeto? 
 
-[] Organização e estudo
-[] Plataforma e Comunidade
-[] Mentalidade Dev
-[] Praticar as tecnologias do Discover
+- [] Organização e estudo
+- [] Plataforma e Comunidade
+- [] Mentalidade Dev
+- [] Praticar as tecnologias do Discover
 
 **#** O que você vai ganhar com isso?
 
-[] Clareza prática
-[] Entendimento da plataforma e comunidade
-[] Projeto aplicando os conceitos do Discover
-[] Bases necessárias para continuar sua jornada
+- [] Clareza prática
+- [] Entendimento da plataforma e comunidade
+- [] Projeto aplicando os conceitos do Discover
+- [] Bases necessárias para continuar sua jornada
 
-# Dicas para ir até o fim
+### Dicas para ir até o fim
 
 * Entre na comunidade do Discord
 * Como a comunidade funciona
 * Como tirar dúvidas técnicas
 * Conectar-se com outros devs [fazerem duplas] 
 
-# Conceitos
+### Conceitos
 
-## O que é ser uma pessoa programadora?
+### O que é ser uma pessoa programadora?
 
 * Oportunidades
 	* Front-end
@@ -83,7 +82,7 @@ Construir o app de uma calculadora para trabalhos freelance, com servidor em Nod
 * Tecnologias e evolução
 * Especialista vs Generalista
 
-## Guia de estudos e organização
+### Guia de estudos e organização
 
 * Pomodoro
 * Tenha um lugar reservado para seu estudo
@@ -99,7 +98,7 @@ Construir o app de uma calculadora para trabalhos freelance, com servidor em Nod
 	não entendeu
 * Pesquisas
 
-## Dica de como acompanhar os vídeos
+### Dica de como acompanhar os vídeos
 
 * Assista com o intuito de entender 
 * Você não precisa decorar (Processador x HD)
@@ -107,7 +106,7 @@ Construir o app de uma calculadora para trabalhos freelance, com servidor em Nod
 * Não tem problema não entender tudo de primeira,
 leva tempo e mais conhecimento para que as coisas façam sentido.
 
-## Ajustando a mentalidade
+### Ajustando a mentalidade
 
 * Você precisa de tempo
 	* Descanso faz parte do aprendizado (sono)
@@ -118,7 +117,7 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 * "Eu sinto que estou só copiando e colando"
 * Você gosta do que está fazendo?
 
-# Bora Codar
+### Bora Codar
 
 * [x] Ambiente
 		* [x] NodeJS 
@@ -171,12 +170,12 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
     * [x] criar o objeto do perfil de usuário
     * [x] passar o objeto do perfil de usuário para o profile.ejs
 
-# Recap
+### Recap
 
 * O que você aprender nessa aula ?
 * Comemore. 🎉 Você evoluiu 🚀
 
-# Próxima aula
+### Próxima aula
 
 * Spoiler
 * Participe da comunidade
@@ -185,8 +184,7 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 * A aula vai ficar gravada
 * Nosso time estará na comunidade para tirar dúvidas e te deixar por dentro de tudo.
 
-
-# Mission: Assistir aos cursos
+### Mission: Assistir aos cursos
 
 * [] NodeJS
 * [] NodeJS com EJS
@@ -197,4 +195,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.
 
 ---
 
-Feito com ♥ by Rocketseat :wave: [Participe da nossa comunidade!](https://discordapp.com/invite/gCRAFhc)
+Feito com ♥ by [douglasabnovato!](https://www.linkedin.com/in/douglasabnovato/) :wave: 
