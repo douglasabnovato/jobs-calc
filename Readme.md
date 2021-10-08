@@ -44,15 +44,14 @@ O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer
 Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
- 
-### Qual a proposta deste projeto? 
+## Qual a proposta deste projeto? 
 
 - [] Organização e estudo
 - [] Plataforma e Comunidade
 - [] Mentalidade Dev
 - [] Praticar as tecnologias do Discover
 
-**#** O que você vai ganhar com isso?
+### O que você vai ganhar com isso?
 
 - [] Clareza prática
 - [] Entendimento da plataforma e comunidade
@@ -65,9 +64,7 @@ Você pode visualizar o layout do projeto através [desse link](https://www.figm
 * Como a comunidade funciona
 * Como tirar dúvidas técnicas
 * Conectar-se com outros devs [fazerem duplas] 
-
-### Conceitos
-
+  
 ### O que é ser uma pessoa programadora?
 
 * Oportunidades
@@ -117,7 +114,7 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 * "Eu sinto que estou só copiando e colando"
 * Você gosta do que está fazendo?
 
-### Bora Codar
+###  Bora Codar
 
 * [x] Ambiente
 		* [x] NodeJS 
