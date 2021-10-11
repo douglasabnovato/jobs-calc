@@ -44,19 +44,19 @@ O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer
 Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
-## Qual a proposta deste projeto? 
+## Qual a proposta deste projeto - parte 1? 
 
-- [] Organização e estudo
-- [] Plataforma e Comunidade
-- [] Mentalidade Dev
-- [] Praticar as tecnologias do Discover
+- [x] Organização e estudo
+- [x] Plataforma e Comunidade
+- [x] Mentalidade Dev
+- [x] Praticar as tecnologias do Discover
 
 ### O que você vai ganhar com isso?
 
-- [] Clareza prática
-- [] Entendimento da plataforma e comunidade
-- [] Projeto aplicando os conceitos do Discover
-- [] Bases necessárias para continuar sua jornada
+- [x] Clareza prática
+- [x] Entendimento da plataforma e comunidade
+- [x] Projeto aplicando os conceitos do Discover
+- [x] Bases necessárias para continuar sua jornada
 
 ### Dicas para ir até o fim
 
@@ -185,6 +185,134 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 
 * [x] NodeJS
 * [x] NodeJS com EJS
+
+## Qual a proposta deste projeto - parte 2? 
+
+Qual a proposta deste projeto?
+
+* [ ] Organização e estudo
+* [ ] Plataforma e Comunidade
+* [ ] Mentalidade Dev
+* [ ] Praticar as tecnologias do Discover
+
+### O que você vai ganhar com isso?
+
+* [ ] Clareza prática
+* [ ] Entendimento da plataforma e comunidade
+* [ ] Projeto aplicando os conceitos do Discover
+* [ ] Bases necessárias para continuar sua jornada
+
+### Dicas para ir até o fim
+
+* Entre na comunidade do Discord
+* Como a comunidade funciona
+* Como tirar dúvidas técnicas
+* Conectar-se com outros devs [fazerem duplas]
+
+### Bora Codar
+
+- [x]  Revisão da última aula
+- [x]  O que veremos até o final dessa aula?
+
+### Salvar Job
+	* [x] Form job
+    - [x] method post
+    - [x] action="/job"
+	* [x] rota /job POST
+    - [x] req.body
+    - [x] urlencoded
+	* [x] Criar array de jobs
+    - [x] enviar para o index.ejs
+    - [x] .forEach
+    - [x] ajustes dos dados no index
+	* [x] Configurar jobs na criação de um novo Job
+    - [x] job id: pegar o id do ultimo item do array
+    - [x] created_at: Date.now()
+      - [x] para o cálculo de dias restantes
+    - [x] total-hours
+    - [x] daily-hours
+    - [x] name
+	* [x] Atualizar os jobs no index, antes de apresentar
+
+### Remaining calculation
+  * [x] Devemos calcular sempre que apresentar o projeto, 
+				pois poderemos mudar os dados do projeto a qualquer momento
+  * [x] remainingDays = total hours do job / daily hours do job
+  * [x] adicionar os dias à data de criação, para criar uma data futura
+  * [x] subtrair da data futura, o número de dias restantes baseado na data de hoje
+  * [x] pegar a diferença de milissegundos para dias
+  * [x] update status (done | progress)
+  * [x] budget: profile value hour * total job hours
+    - [x] deverá ser atualizado sempre que apresentar o projeto, 
+						pois poderá variar dependendo dos dados do projeto ou dos dados do perfil
+	* [x] atualizar o index.ejs
+    - [x] Prazo encerrado ao invés de 0 dias para a entrega
+	* [x] adicionar uma entrada no jobs[] para o prazo encerrado
+	
+### Refatorar Jobs
+    - [x] Criar um Object Literal Jobs
+    - [x] Adicionar data em Jobs
+    - [x] Adicionar index() e create()
+
+### Object Profile
+	* [x] data
+  * [x] update()
+    - [x] Calculo de custo de hora
+	    * [x] weeksPerYear
+	    * [x] weeksPerMonth = weeks per year - vacation
+	    * [x] total hours per week
+	    * [x] monthly total hours
+	    * [x] value hour = monthly budget / monthly total hours
+    - [x] redirect to /profile
+
+### Editar job
+  * [x] criar função show
+    - [x] rota job/:id GET
+    - [x] req.params
+    - [x] .find
+    - [x] Job not found
+    - [x] service: calculate job budget
+    - [x] refactor index to use service
+    - [x] update job-edit.ejs
+  * [x] criar função de update
+    - [x] rota /job/:id POST
+    - [x] .find
+    - [x] job not found
+    - [x] updatedJob
+    - [x] Job.data= Job.data.map()
+    - [x] redirect
+
+### Delete job
+  * [x] route /job/delete/:id POST
+  * [x] Job.controller.delete()
+  * [x] req.params.id
+  * [x] Job.data.filter()
+  * [x] redirect to /
+	* [x] Delete all Jobs and find error
+    - [x] lastId of Job.controller.create()
+    - [x] use optional chaining operator ?.
+    - [x] use Logical OR operator
+
+### Recap
+
+* O que você aprender nessa aula ?
+
+Comemore. 🎉 
+Você evoluiu 🚀
+
+### Próxima aula
+
+* Spoiler
+* Participe da comunidade
+* Tire dúvidas, ajude outros devs e se envolva por lá
+
+* A aula vai ficar gravada
+* Nosso time estará na comunidade para tirar dúvidas e te deixar por dentro de tudo.
+
+### Mission: Assistir aos cursos
+
+* [] NodeJS com EJS
+* [] NodeJS SQLite
 
 ## :memo: Licença
 
