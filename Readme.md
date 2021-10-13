@@ -190,17 +190,17 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 
 Qual a proposta deste projeto?
 
-* [ ] Organização e estudo
-* [ ] Plataforma e Comunidade
-* [ ] Mentalidade Dev
-* [ ] Praticar as tecnologias do Discover
+* [x] Organização e estudo
+* [x] Plataforma e Comunidade
+* [x] Mentalidade Dev
+* [x] Praticar as tecnologias do Discover
 
 ### O que você vai ganhar com isso?
 
-* [ ] Clareza prática
-* [ ] Entendimento da plataforma e comunidade
-* [ ] Projeto aplicando os conceitos do Discover
-* [ ] Bases necessárias para continuar sua jornada
+* [x] Clareza prática
+* [x] Entendimento da plataforma e comunidade
+* [x] Projeto aplicando os conceitos do Discover
+* [x] Bases necessárias para continuar sua jornada
 
 ### Dicas para ir até o fim
 
