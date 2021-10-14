@@ -18,7 +18,7 @@ routes.get("/job/edit", (request, response) => response.render(views + "job-edit
 routes.get("/profile", (request, response) => response.render(views + "profile", { profile }))
 
 routes.post("/job", (request, response) => {
-    console.log("Salvar Dados"); 
+    console.log(request.body); 
 })
  
 module.exports = routes;
