@@ -16,5 +16,9 @@ routes.get("/", (request, response) => response.render(views + "index"))
 routes.get("/job", (request, response) => response.render(views + "job"))
 routes.get("/job/edit", (request, response) => response.render(views + "job-edit"))
 routes.get("/profile", (request, response) => response.render(views + "profile", { profile }))
+
+routes.post("/job", (request, response) => {
+    console.log("Salvar Dados"); 
+})
  
 module.exports = routes;
