@@ -6,37 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#41414C" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-    <title>JobsCalc</title>
-
+    <title>JobsCalc</title> 
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/partials/page-header.css" />
     <link rel="stylesheet" href="/styles/partials/cards.css" />
     <link rel="stylesheet" href="/styles/partials/buttons.css" />
     <link rel="stylesheet" href="/styles/partials/forms.css" />
     <link rel="stylesheet" href="/styles/partials/animations.css" />
-    <link rel="stylesheet" href="/styles/pages/job.css" />
-
+    <link rel="stylesheet" href="/styles/pages/job.css" /> 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
-    
+    /> 
   </head>
   <body id="page-job">
     <%- include('parts/page-header', {title: 'Adicionar Novo Job'}) %> 
-
     <div class="container flex animate-up delay-2"> 
         <form id="form-job" action="/job" method="POST">
           <fieldset>
             <legend>Dados do Job</legend>
-            <div class="separator light"></div>
-
+            <div class="separator light"></div> 
             <div class="input-wrapper">
               <label for="name">Nome do Job</label>
               <input type="text" id="name" name="name" />
-            </div>
-
+            </div> 
             <div class="input-group">
               <div class="input-wrapper">
                 <label for="daily-hours">Quantas horas <br/>
@@ -46,8 +40,7 @@
                   step="0.1" 
                   id="daily-hours" 
                   name="daily-hours"/>
-              </div>
-
+              </div> 
               <div class="input-wrapper">
                 <label for="total-hours">Estimativa de <br/>
                   horas para esse Job?</label>
@@ -57,8 +50,7 @@
                   name="total-hours" />
               </div>
             </div>
-          </fieldset>
-    
+          </fieldset> 
         </form> 
       <aside class="card">
         <img src="/images/money-gray.svg" alt="Imagem de Dinheiro">
@@ -81,10 +73,8 @@
               title="Cancelar cadastro">
           </a>
         </div>
-      </aside>
-      
-    </div>
-    <!-- end container -->
+      </aside> 
+    </div> <!-- end container -->
   </body>
 </html>
  

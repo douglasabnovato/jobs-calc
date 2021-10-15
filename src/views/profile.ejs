@@ -6,27 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#41414C" />
     <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-    <title>JobsCalc</title>
-
+    <title>JobsCalc</title> 
     <link rel="stylesheet" href="/styles/main.css" />
     <link rel="stylesheet" href="/styles/partials/page-header.css" />
     <link rel="stylesheet" href="/styles/partials/cards.css" />
     <link rel="stylesheet" href="/styles/partials/buttons.css" />
     <link rel="stylesheet" href="/styles/partials/forms.css" />
     <link rel="stylesheet" href="/styles/partials/animations.css" />
-    <link rel="stylesheet" href="/styles/pages/profile.css" />
-
+    <link rel="stylesheet" href="/styles/pages/profile.css" /> 
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
       rel="stylesheet"
-    />
-    
+    /> 
   </head>
-  <body id="page-profile">
-    
-    <%- include('parts/page-header', {title: 'Meu Perfil'}) %> 
-
+  <body id="page-profile"> 
+    <%- include('parts/page-header', {title: 'Meu Perfil'}) %>  
     <div class="container animate-up delay-2">
       <aside class="card">
         <img src="<%= profile.avatar %>" alt="<%= profile.name %>">
@@ -37,19 +32,16 @@
         </p>
         <button class="button green" form="form-profile" type="submit">Salvar dados</button>
       </aside>
-      <main>
-
+      <main> 
         <form id="form-profile">
           <fieldset>
             <legend>Dados do perfil</legend>
-            <div class="separator light"></div>
-
+            <div class="separator light"></div> 
             <div class="input-group">
               <div class="input-wrapper">
                 <label for="name">Nome</label>
                 <input type="text" id="name" name="name" value="<%= profile.name %>"/>
-              </div>
-
+              </div> 
               <div class="input-wrapper">
                 <label for="avatar">Link da foto</label>
                 <input 
@@ -60,12 +52,10 @@
                 value="<%= profile.avatar %>"/>
               </div>
             </div>
-          </fieldset>
-
+          </fieldset> 
           <fieldset>
             <legend>Planejamento</legend>
-            <div class="separator light"> </div>
-
+            <div class="separator light"> </div> 
             <div class="input-group">
               <div class="input-wrapper">
                 <label for="monthly-budget">Quanto eu <br/>quero ganhar por mês?</label>
@@ -76,8 +66,7 @@
                   name="monthly-budget" 
                   placeholder="R$"
                   value="<%= profile["monthly-budget"] %>"/>
-              </div>
-
+              </div> 
               <div class="input-wrapper">
                 <label for="hours-per-day">Quantas horas <br/>
                   quero trabalhar por dia?</label>
@@ -87,8 +76,7 @@
                   name="hours-per-day" 
                   value="<%= profile["hours-per-day"] %>"/>
               </div>
-            </div>
-
+            </div> 
             <div class="input-group">
               <div class="input-wrapper">
                 <label for="days-per-week">Quantos dias <br/>quero
@@ -98,8 +86,7 @@
                   id="days-per-week" 
                   name="days-per-week" 
                   value="<%= profile["days-per-week"] %>"/>
-              </div>
-
+              </div> 
               <div class="input-wrapper">
                 <label for="vacation-per-year">Quantas semanas <br/>
                   por ano você quer tirar férias ?</label>
@@ -110,12 +97,10 @@
                   value="<%= profile["vacation-per-year"] %>"/>
               </div>
             </div>
-          </fieldset>
-    
+          </fieldset> 
         </form>
       </main>
-    </div>
-    <!-- end container -->
+    </div> <!-- end container -->
   </body>
 </html>
  
