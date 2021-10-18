@@ -9,7 +9,8 @@ const profile = {
     "monthly-budge": 5000,
     "days-per-week": 5,
     "hours-per-day": 5,
-    "vacation-per-year": 4
+    "vacation-per-year": 4, 
+    "value-hour": 75
 }
 
 const jobs = [
@@ -18,7 +19,7 @@ const jobs = [
         name: "Pizzaria Guloso",
         "daily-hours": 2,
         "total-hours": 60,
-        created_at: Date.now()
+        created_at: Date.now() 
     },
     {
         id: 2,
@@ -26,24 +27,53 @@ const jobs = [
         "daily-hours": 3,
         "total-hours": 47,
         created_at: Date.now()
+    },
+    {
+        id: 3,
+        name: "Nike",
+        "daily-hours": 3,
+        "total-hours": 55,
+        created_at: Date.now() 
+    },
+    {
+        id: 4,
+        name: "SJN",
+        "daily-hours": 6,
+        "total-hours": 60,
+        created_at: Date.now()
     }
 ]
+
+function remainingDays(job){
+
+    const remainingDays = (job["total-hours"]/job["daily-hours"]).toFixed()
+    const createdDate = new Date(job.created_at)
+    const dueDay = createdDate.getDate() + Number(remainingDays)
+    const dueDateInMs = createdDate.setDate(dueDay) 
+    const timeDiffInMs = dueDateInMs - Date.now() 
+
+    const dayInMs = 1000 * 60 * 60 * 24
+    const dayDiff = Math.floor(timeDiffInMs / dayInMs) 
+    return dayDiff
+}
 
 routes.get("/", (request, response) => { 
     
     const updatedJobs = jobs.map((job) => {
 
-        const remaininDays = (job["total-hours"]/job["daily-hours"]).toFixed()
-        const createdDate = new Date(job.created_at)
-        const dueDay = createdDate.getDate() + Number(remaininDays)
-        const dueDate = createdDate.setDate(dueDay)
+        const remaining = remainingDays(job)
+        const status = remaining <= 0 ? "Done" : "Progress"
 
-        const timeDiffInMs = dueDate - Date.now()
+        return {
+            ...job,
+            remaining,
+            status,
+            budget: profile["value-hour"] * job["total-hours"]
+        }
 
-        return job
     })
 
-    response.render(views + "index", { jobs })
+    response.render(views + "index", { jobs: updatedJobs })
 
 })
 
