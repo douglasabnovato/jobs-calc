@@ -311,8 +311,8 @@ Você evoluiu 🚀
 
 ### Mission: Assistir aos cursos
 
-* [] NodeJS com EJS
-* [] NodeJS SQLite
+* [x] NodeJS com EJS
+* [x] NodeJS SQLite
 
 ## :memo: Licença
 

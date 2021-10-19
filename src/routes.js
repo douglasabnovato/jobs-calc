@@ -19,7 +19,26 @@ const Profile = {
         index(){
             return resizeBy.render(views + "profile", { profile: Profile.data })
         },
-    }
+
+        update(request, response){
+
+            const data = request.body;
+            const weeksPerYear = 52;
+            const weeksPerMonth = (weeksPerYear - data["vacation-per-year"]) / 12;
+            const weeksTotalHours = data["hours-per-day"] * data["hours-per-week"];
+            const monthlyTotalHours = weekTotalHours * weeksPerMonth;
+
+            const valueHhour = data["monthly-budget"] / monthlyTotalHours
+
+            Profile.data = {
+                ...Profile.data,
+                ...req.body,
+                "value-hour": valueHour
+            }
+
+            return response.redirect("/profile")
+        },
+    } 
 
 }
 
@@ -58,6 +77,7 @@ const Job = {
 
     controllers: {
         index(request, response){
+            
             const updatedJobs = Job.data.map((job) => {
         
                 const remaining = Job.services.remainingDays(job)
@@ -73,6 +93,7 @@ const Job = {
             })
         
             response.render(views + "index", { jobs: updatedJobs }) 
+
          },
 
          create(request, response){
