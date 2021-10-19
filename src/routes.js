@@ -23,7 +23,7 @@ const Profile = {
         update(request, response){
 
             const data = request.body;
-            const weeksPerYear = 54;
+            const weeksPerYear = 52;
             const weeksPerMonth = (weeksPerYear - data["vacation-per-year"]) / 12;
             const weekTotalHours = data["hours-per-day"] * data["hours-per-week"];
             const monthlyTotalHours = weekTotalHours * weeksPerMonth;
@@ -114,6 +114,12 @@ const Job = {
             })
 
             return response.redirect("/")
+         },
+
+         show(request, response){
+            const jobId = request.params.id
+            const job = Job.data.find(job => job.id === jobId)
+            return response.render(views + "job-edit", { job })
          }
     },
 
@@ -138,9 +144,12 @@ const Job = {
 } 
 
 routes.get("/", Job.controllers.index) 
+
 routes.get("/job", Job.controllers.create)
 routes.post("/job", Job.controllers.save)
-routes.get("/job/edit", (request, response) => response.render(views + "job-edit"))
+
+routes.get("/job/:id", Job.controllers.show)
+
 routes.get("/profile", Profile.controllers.index) 
 routes.post("/profile", Profile.controllers.update) 
  
