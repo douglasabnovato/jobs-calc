@@ -50,28 +50,32 @@ const Job = {
             name: "Pizzaria Guloso",
             "daily-hours": 2,
             "total-hours": 60,
-            created_at: Date.now() 
+            created_at: Date.now(),
+            budget: 1050
         },
         {
             id: 2,
             name: "OneTwo Project",
             "daily-hours": 3,
             "total-hours": 47,
-            created_at: Date.now()
+            created_at: Date.now(),
+            budget: 2050
         },
         {
             id: 3,
             name: "Nike",
             "daily-hours": 3,
             "total-hours": 55,
-            created_at: Date.now() 
+            created_at: Date.now() ,
+            budget: 3050
         },
         {
             id: 4,
             name: "Dabn",
             "daily-hours": 5,
             "total-hours": 59,
-            created_at: Date.now()
+            created_at: Date.now(),
+            budget: 4050
         }
     ],
 
@@ -117,8 +121,12 @@ const Job = {
          },
 
          show(request, response){
+
             const jobId = request.params.id
-            const job = Job.data.find(job => job.id === jobId)
+            const job = Job.data.find(job => Number(job.id) === Number(jobId))
+
+            if(!job){ return response.send("Job not Found!")}
+
             return response.render(views + "job-edit", { job })
          }
     },
