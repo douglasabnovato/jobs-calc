@@ -50,32 +50,28 @@ const Job = {
             name: "Pizzaria Guloso",
             "daily-hours": 2,
             "total-hours": 60,
-            created_at: Date.now(),
-            budget: 1050
+            created_at: Date.now()  
         },
         {
             id: 2,
             name: "OneTwo Project",
             "daily-hours": 3,
             "total-hours": 47,
-            created_at: Date.now(),
-            budget: 2050
+            created_at: Date.now() 
         },
         {
             id: 3,
             name: "Nike",
             "daily-hours": 3,
             "total-hours": 55,
-            created_at: Date.now() ,
-            budget: 3050
+            created_at: Date.now() 
         },
         {
             id: 4,
             name: "Dabn",
             "daily-hours": 5,
             "total-hours": 59,
-            created_at: Date.now(),
-            budget: 4050
+            created_at: Date.now() 
         }
     ],
 
@@ -92,7 +88,7 @@ const Job = {
                     ...job,
                     remaining,
                     status,
-                    budget: Profile.data["value-hour"] * job["total-hours"]
+                    budget: Job.services.calculateBudget(job, Profile.data["value-hour"])
                 }
         
             }) 
@@ -127,6 +123,8 @@ const Job = {
 
             if(!job){ return response.send("Job not Found!")}
 
+            job.budget = Job.services.calculateBudget(job, Profile.data["value-hour"])
+
             return response.render(views + "job-edit", { job })
          }
     },
@@ -147,7 +145,8 @@ const Job = {
 
             return dayDiff
         
-        }
+        },
+        calculateBudget: (job, valueHour) => valueHour * job["total-hours"]
     }
 } 
 
