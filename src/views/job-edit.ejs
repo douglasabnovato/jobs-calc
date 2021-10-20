@@ -25,7 +25,7 @@
   <body id="page-job-edit"> 
     <%- include('parts/page-header', {title: 'Editar job'}) %> 
     <div class="container flex animate-up delay-2">
-        <form id="form-job">
+        <form id="form-job" method="post" action="/job/<%= job.id %>">
           <fieldset>
             <legend>Dados do Job</legend>
             <div class="separator light"></div> 
