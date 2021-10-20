@@ -1,7 +1,5 @@
 const express = require("express")
-const routes = express.Router() 
-
-const views = __dirname + "/views/";
+const routes = express.Router()  
 
 const Profile = {
 
@@ -17,7 +15,7 @@ const Profile = {
 
     controllers: {
         index(request, response){
-            return response.render(views + "profile", { profile: Profile.data })
+            return response.render("profile", { profile: Profile.data })
         },
 
         update(request, response){
@@ -93,12 +91,12 @@ const Job = {
         
             }) 
         
-            return response.render(views + "index", { jobs: updatedJobs }) 
+            return response.render("index", { jobs: updatedJobs }) 
 
          },
 
          create(request, response){
-            return response.render(views + "job") 
+            return response.render("job") 
          },
 
          save(request, response){
@@ -125,7 +123,7 @@ const Job = {
 
             job.budget = Job.services.calculateBudget(job, Profile.data["value-hour"])
 
-            return response.render(views + "job-edit", { job })
+            return response.render("job-edit", { job })
 
          },
 
