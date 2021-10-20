@@ -126,9 +126,11 @@ const Job = {
             job.budget = Job.services.calculateBudget(job, Profile.data["value-hour"])
 
             return response.render(views + "job-edit", { job })
+
          },
 
-         update(request, response){
+         update(request, response){ 
+
             const jobId = request.params.id
             const job = Job.data.find(job => Number(job.id) === Number(jobId))
 
@@ -151,6 +153,15 @@ const Job = {
             })
 
             response.redirect("/job/" + jobId)
+         },
+
+         delete(request, response){
+                
+            const jobId = request.params.id
+
+            Job.data = Job.data.filter(job => Number(job.id) !== Number(jobId))
+
+            response.redirect("/")
          }
          
     },
@@ -185,6 +196,7 @@ routes.post("/job", Job.controllers.save)
 
 routes.get("/job/:id", Job.controllers.show)
 routes.post("/job/:id", Job.controllers.update)
+routes.post("/job/delete/:id", Job.controllers.delete)
 
 routes.get("/profile", Profile.controllers.index) 
 routes.post("/profile", Profile.controllers.update) 
