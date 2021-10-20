@@ -8,7 +8,8 @@ let data = {
   "value-hour": 110,
 };
 
-mudule.exports = { 
+module.exports = { 
+    
     get(){
         return data;
     },

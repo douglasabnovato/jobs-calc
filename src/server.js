@@ -7,7 +7,7 @@ const path = require("path")
 server.set("view engine", "ejs")
 
 //mudar a localização da pasta views
-server.set("views", path.join(_dirname, "views"))
+server.set("views", path.join(__dirname, "views"))
 
 //habilitar arquivos statics
 server.use(express.static("public")) 

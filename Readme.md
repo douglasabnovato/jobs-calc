@@ -350,7 +350,7 @@ Você evoluiu 🚀
 	* [X] Separar data
 	* [X] Criar get no model
  	* [X] Importar model Profile no ProfileController
-	* [X] Refaotrar Profile.data para Profile.get()
+	* [X] Refatorar Profile.data para Profile.get()
 	* [X] Refatorar update do profile no model
 
 ### Refatorar Job
