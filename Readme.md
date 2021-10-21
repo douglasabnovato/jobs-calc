@@ -403,7 +403,7 @@ Você evoluiu 🚀
 
 ### Mission: Assistir aos cursos
 
-* [] NodeJS SQLite
+* [x] NodeJS SQLite
 
 ## :memo: Licença
 
