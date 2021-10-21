@@ -1,5 +1,5 @@
 const Job = require("../model/Job")
-const JobUtils = require("../utils/jobUtils")
+const JobUtils = require("../utils/JobUtils")
 const Profile = require("../model/Profile")
 
 
@@ -87,11 +87,12 @@ module.exports = {
 
      delete(request, response){
             
-        const jobId = request.params.id
+        const jobId = request.params.id 
 
-        Job.data = Job.data.filter(job => Number(job.id) !== Number(jobId))
+        Job.delete(jobId)
 
         response.redirect("/")
+
      }
      
 }  

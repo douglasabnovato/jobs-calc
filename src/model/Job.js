@@ -23,5 +23,10 @@ module.exports = {
     
     update(newJob){
       data = newJob;
-  }, 
+    },
+    
+    delete(idJob){
+      data = data.filter(job => Number(job.id) === Number(idJob))
+    }
+
 }
