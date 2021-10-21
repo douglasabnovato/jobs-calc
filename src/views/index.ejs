@@ -29,7 +29,15 @@
           <img id="logo" src="/images/logo.svg" alt="Logo" />
           <span id="notification">
             <img src="/images/alert-octagon.svg" alt="Alerta" />
-            Você tem <%= freeHours %>  horas livres no seu dia
+
+            <% if(freeHours === 0) {  %> 
+              Você preencheu toda sua agenda. 
+            <% } else if(freeHours > 0) {  %> 
+              Você tem <%= freeHours %>  horas livres no seu dia.
+            <% } else if(freeHours < 0) {  %>
+              Você tem <%= (-freeHours) %>  horas extras na sua agenda.
+            <% }  %>   
+
           </span>
           <a href="/profile" id="avatar-profile">
             <p><%= profile.name %> <span>Ver perfil</span></p>
