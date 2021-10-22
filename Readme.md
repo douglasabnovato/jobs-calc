@@ -529,7 +529,7 @@ Você evoluiu 🚀
 
 ---
 
-## Caminho
+### Caminho
 
 Direção é mais importante que velocidade.
 
@@ -666,7 +666,7 @@ Ao vencer essa etapa, você poderá utilizar ferramentas para criar as autentica
 
 ---
 
-## Mentalidade
+### Mentalidade
 
 - [ ]  Soft-skills
     - [ ]  Comunicação
