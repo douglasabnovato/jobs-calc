@@ -405,6 +405,290 @@ Você evoluiu 🚀
 
 * [x] NodeJS SQLite
 
+## Qual a proposta deste projeto - parte 4? 
+
+* [ ] Organização e estudo
+* [ ] Plataforma e Comunidade
+* [ ] Mentalidade Dev
+* [ ] Praticar as tecnologias do Discover
+
+### O que você vai ganhar com isso?
+
+* [ ] Clareza prática
+* [ ] Entendimento da plataforma e comunidade
+* [ ] Projeto aplicando os conceitos do Discover
+* [ ] Bases necessárias para continuar sua jornada
+
+### Dicas para ir até o fim
+
+* Entre na comunidade do Discord
+* Como a comunidade funciona
+* Como tirar dúvidas técnicas
+* Conectar-se com outros devs [fazerem duplas]
+
+### Bora Codar
+- [X]  Revisão da última aula
+- [X]  O que veremos até o final dessa aula?
+
+### Refatorar
+* [X] Save JobController
+
+### Banco de dados
+	* [X] Instalar SQLite
+	* [X] Criar config
+	* [X] Criar init
+	* [X]  Async Await
+	* [X] Criar tabela profile
+	* [X] Criar tabela jobs
+	* [X] Inserir profile
+	* [X] Inserir Jobs
+	* [X]  Instalar beekeeper
+	* [X] Ver resultado no beekeeper
+
+### Profile
+	* [x]  Importar config no module 
+
+### Profile get()
+	* [x] iniciar banco de dados
+	* [x] SELECT de profile
+	* [x] Fechar banco de dados 
+	* [x] Normalizar os dados 
+	* [x] Retornar os dados normalizados
+	* [X]  Transformar index do controller em Async
+	* [X] Transformando index do DashboardController em Async
+
+### Profile update()
+	* [X] iniciar banco de dados
+	* [X] UPDATE de profile
+	* [X] Fechar banco de dados 
+	* [X] Transformando update no controler em Async
+
+### Jobs 
+	* [X] Importando config no module
+
+### Jobs show()
+	* [X] iniciar banco de dados
+	* [X] SELECT de job
+	* [X] Fechar banco de dados 
+	* [X] Normalizar os dados 
+	* [X] Retornar os dados normalizados
+	* [X] Transformando show do controller em Async
+
+### Jobs create()
+	* [X] iniciar banco de dados
+	* [X] INSERT de newJob
+	* [X] Fechar banco de dados
+
+### Jobs update()
+	* [X] iniciar banco de dados
+	* [X] UPDATE de job
+	* [X] Fechar banco de dados 
+
+### Jobs delete()
+	* [X] iniciar banco de dados
+	* [X] DELETE job
+	* [X] Fechar banco de dados 
+
+### Recap
+
+* O que você aprendeu nessa aula ?
+
+Comemore. 🎉 
+Você evoluiu 🚀
+
+### Próxima aula
+
+* Spoiler
+* Participe da comunidade
+* Tire dúvidas, ajude outros devs e se envolva por lá
+
+* A aula vai ficar gravada
+* Nosso time estará na comunidade para tirar dúvidas e te deixar por dentro de tudo.
+
+### Mission: Assistir aos cursos
+
+* [] Assistir o curso de Git e Github
+
+## Encerramento - parte 5? 
+
+### Oportunidades  
+
+- [ ]  Salário
+- [ ]  Como se posicionar?
+    - [ ]  LinkedIn
+    - [ ]  Github
+
+### Alinhando expectativas
+
+- [ ]  Certo nível de complexidade para iniciantes
+    - [ ]  Dados, lógica de negócio, entendimento amplo do negócio
+- [ ]  Maior consistência que Front End
+    - [ ]  Front end existem muitas ferramentas
+- [ ]  Você gosta de mexer com dados e de entender as minúcias de um negócio?
+- [ ]  Você não liga muito para a aparência das coisas?
+
+---
+
+## Caminho
+
+Direção é mais importante que velocidade.
+
+### Visão geral
+
+- [ ]  Como funciona a WEB
+- [ ]  HTTP
+    - [ ]  Servidor e Cliente
+    - [ ]  Fluxo de comunicação
+- [ ]  Entendimento de computadores
+- [ ]  Estrutura de dados
+- [ ]  Lógica e Algoritmos
+- [ ]  Memória, Processamento
+- [ ]  Abstração, eficiência
+
+A maior parte desse conteúdo é técnico e serve para melhorar seu vocabulário e maneira de pensar como uma pessoa desenvolvedora
+
+Seja uma pessoa preparada para as oportunidades
+
+---
+
+### Front end
+
+- [ ]  Conhecimento geral
+- [ ]  HTML
+    - [ ]  Estrutura
+- [ ]  CSS
+    - [ ]  Layout
+- [ ]  JS
+    - [ ]  Web Apis
+- [ ]  Fetch data
+
+**Para praticar**
+
+- [ ]  Codar a primeira maratona
+- [ ]  1 Landing page
+- [ ]  1 projeto que consuma uma API
+
+Paciência e persistência
+
+---
+
+### NodeJS / Express
+
+- [ ]  Servidor
+- [ ]  middlewares
+- [ ]  routes
+- [ ]  CRUD
+- [ ]  APIs
+
+**Para praticar**
+
+- [ ]  2 projetos que envolvam CRUD
+    - [ ]  Lista de tarefas
+    - [ ]  Playlist de músicas favoritas
+- [ ]  1 projeto que irá consumir uma API
+- [ ]  1 projeto que envolva upload de arquivos
+
+A prática leva ao aperfeiçoamento
+
+---
+
+### Banco de Dados
+
+- [ ]  Como funciona
+- [ ]  Diferença entre SQL e NoSQL
+    - [ ]  SQL
+    - [ ]  MongoDB
+- [ ]  Arquitetura de dados
+- [ ]  Operações básicas: Inserir, Consultar, Alterar, Apagar
+- [ ]  Busca avançada
+- [ ]  Ordenação, Agrupamento, Paginação
+
+**Para praticar**
+
+- [ ]  1 projeto CRUD
+- [ ]  1 projeto que envolva diversos filtros de dados
+- [ ]  1 projeto que envolva paginação
+- [ ]  3 projetos que envolva relacionamentos
+    - [ ]  Produtos, Categorias
+    - [ ]  Usuários, Grupos
+    - [ ]  Blog, Comentários
+
+A chave do sucesso em programação está na repetição!
+
+---
+
+### Alinhando expectativas
+
+- [ ]  Continue a nadar
+- [ ]  Será desafiador
+- [ ]  Buscar contéudo e ajuda
+
+---
+
+### Autenticação e Autorização
+
+- [ ]  Autenticação serve para mostrar quem é você
+- [ ]  Autorização serve para definir o que você pode ou não fazer no sistema
+- [ ]  Sign up/Sign In
+    - [ ]  Login e Senha
+    - [ ]  Validações
+    - [ ]  Envio de email
+- [ ]  Reset de senha
+
+**Para praticar**
+
+- [ ]  1 projeto que envolva autenticação
+- [ ]  1 projeto que envolva autenticação e autorização
+- [ ]  1 projeto que envolva envio de email
+- [ ]  1 projeto que envolva reset de senha
+
+Ao vencer essa etapa, você poderá utilizar ferramentas para criar as autenticações com as redes sociais
+
+---
+
+### Mais ideas de aplicativos para treinar
+
+- [ ]  Encurtador de URL
+- [ ]  Ecommerce (mini)
+- [ ]  Stream de música e/ou vídeo
+- [ ]  Rede social (mini)
+- [ ]  APIs
+- [ ]  Clone
+
+---
+
+### Alinhando expectativas
+
+- [ ]  Você terá produzido +20 mini apps
+- [ ]  Busque oportunidades e vagas
+    - [ ]  Não fique um dia sem procurar e entrar em contato com alguém, mostrando seu desejo de ingressar no mercado
+- [ ]  Essa busca de oportunidade é pra te trazer aprendizado e, talvez, uma vaga
+
+---
+
+## Mentalidade
+
+- [ ]  Soft-skills
+    - [ ]  Comunicação
+    - [ ]  Inglês
+    - [ ]  Resolução de problemas
+    - [ ]  Pró-atividade
+    - [ ]  Resiliência, Paciência, Persistência, Consistência
+- [ ]  Foco
+    - [ ]  Busque lembrar
+        - [ ]  seu momento
+        - [ ]  seu contexto
+        - [ ]  seu objetivo
+- [ ]  Comunidade
+    - [ ]  Você poderá ir mais rápido só, mas irá mais longe com alguém do seu lado
+    - [ ]  Busque ajuda
+    - [ ]  Faça parcerias em projetos
+- [ ]  #NeverStopLearning
+    - [ ]  O estudo é constante
+    - [ ]  O aprendizado é constante
+    - [ ]  Ainda há muito que aprender
+    - [ ]  Continue ....
+
 ## :memo: Licença
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.md) para mais detalhes.
