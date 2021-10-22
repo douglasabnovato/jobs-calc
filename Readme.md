@@ -407,17 +407,17 @@ Você evoluiu 🚀
 
 ## Qual a proposta deste projeto - parte 4? 
 
-* [ ] Organização e estudo
-* [ ] Plataforma e Comunidade
-* [ ] Mentalidade Dev
-* [ ] Praticar as tecnologias do Discover
+* [x] Organização e estudo
+* [x] Plataforma e Comunidade
+* [x] Mentalidade Dev
+* [x] Praticar as tecnologias do Discover
 
 ### O que você vai ganhar com isso?
 
-* [ ] Clareza prática
-* [ ] Entendimento da plataforma e comunidade
-* [ ] Projeto aplicando os conceitos do Discover
-* [ ] Bases necessárias para continuar sua jornada
+* [x] Clareza prática
+* [x] Entendimento da plataforma e comunidade
+* [x] Projeto aplicando os conceitos do Discover
+* [x] Bases necessárias para continuar sua jornada
 
 ### Dicas para ir até o fim
 
@@ -434,16 +434,16 @@ Você evoluiu 🚀
 * [X] Save JobController
 
 ### Banco de dados
-	* [X] Instalar SQLite
-	* [X] Criar config
-	* [X] Criar init
-	* [X]  Async Await
-	* [X] Criar tabela profile
-	* [X] Criar tabela jobs
-	* [X] Inserir profile
-	* [X] Inserir Jobs
-	* [X]  Instalar beekeeper
-	* [X] Ver resultado no beekeeper
+* [X] Instalar SQLite: `npm install sqlite3` e `npm install sqlite`
+* [X] Criar config
+* [X] Criar init
+* [X] Async Await
+* [X] Criar tabela profile
+* [X] Criar tabela jobs
+* [X] Inserir profile
+* [X] Inserir Jobs
+* [X] Instalar beekeeper
+* [X] Ver resultado no beekeeper
 
 ### Profile
 	* [x]  Importar config no module 
