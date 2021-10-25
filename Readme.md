@@ -446,48 +446,48 @@ Você evoluiu 🚀
 * [X] Ver resultado no Beekeeper
 
 ### Profile
-	* [x]  Importar config no module 
+* [x]  Importar config no module 
 
 ### Profile get()
-	* [x] iniciar banco de dados
-	* [x] SELECT de profile
-	* [x] Fechar banco de dados 
-	* [x] Normalizar os dados 
-	* [x] Retornar os dados normalizados
-	* [X] Transformar index do controller em Async
-	* [X] Transformando index do DashboardController em Async
+* [x] iniciar banco de dados
+* [x] SELECT de profile
+* [x] Fechar banco de dados 
+* [x] Normalizar os dados 
+* [x] Retornar os dados normalizados
+* [X] Transformar index do controller em Async
+* [X] Transformando index do DashboardController em Async
 
 ### Profile update()
-	* [X] iniciar banco de dados
-	* [X] UPDATE de profile
-	* [X] Fechar banco de dados 
-	* [X] Transformando update no controler em Async
+* [X] iniciar banco de dados
+* [X] UPDATE de profile
+* [X] Fechar banco de dados 
+* [X] Transformando update no controler em Async
 
 ### Jobs 
-	* [X] Importando config no module
+* [X] Importando config no module
 
 ### Jobs show()
-	* [X] iniciar banco de dados
-	* [X] SELECT de job
-	* [X] Fechar banco de dados 
-	* [X] Normalizar os dados 
-	* [X] Retornar os dados normalizados
-	* [X] Transformando show do controller em Async
+* [X] iniciar banco de dados
+* [X] SELECT de job
+* [X] Fechar banco de dados 
+* [X] Normalizar os dados 
+* [X] Retornar os dados normalizados
+* [X] Transformando show do controller em Async
 
 ### Jobs create()
-	* [X] iniciar banco de dados
-	* [X] INSERT de newJob
-	* [X] Fechar banco de dados
+* [X] iniciar banco de dados
+* [X] INSERT de newJob
+* [X] Fechar banco de dados
 
 ### Jobs update()
-	* [X] iniciar banco de dados
-	* [X] UPDATE de job
-	* [X] Fechar banco de dados 
+* [X] iniciar banco de dados
+* [X] UPDATE de job
+* [X] Fechar banco de dados 
 
 ### Jobs delete()
-	* [X] iniciar banco de dados
-	* [X] DELETE job
-	* [X] Fechar banco de dados 
+* [X] iniciar banco de dados
+* [X] DELETE job
+* [X] Fechar banco de dados 
 
 ### Recap
 
