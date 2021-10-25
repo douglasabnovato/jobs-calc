@@ -1,3 +1,5 @@
+const Database = require("../db/config");
+
 let data = {
   name: "Douglas",
   avatar: "https://avatars.githubusercontent.com/u/14242834?v=4",
@@ -10,7 +12,16 @@ let data = {
 
 module.exports = { 
     
-    get(){
+    async get(){
+
+        const db = await Database(); 
+ 
+        const data2 = await db.get(`SELECT * FROM profile`);
+
+        await db.close();
+
+        console.log(data2);
+
         return data;
     },
 
