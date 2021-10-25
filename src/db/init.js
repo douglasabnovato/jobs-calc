@@ -4,30 +4,30 @@ const initDb = {
 
     async init(){
 
-        const db = await Database();
+        const db = await Database(); 
 
         await db.exec(`CREATE TABLE profile (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             avatar TEXT, 
-            monthly_budget INT,
-            days_per_week INT,
-            hours_per_day INT,
-            vacation_per_day INT,
-            value_hour INT
-        )`);
-    
+            monthly_budget INTEGER,
+            days_per_week INTEGER,
+            hours_per_day INTEGER,
+            vacation_per_day INTEGER,
+            value_hour INTEGER
+        )`);  
+        
         await db.exec(`CREATE TABLE jobs (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT, 
             daily_hours INT,
             total_hours INT,
             created_at DATETIME 
-        )`);
-    
+        )`); 
+        
         await db.run(`INSERT INTO profile(
             name,
-            avatar 
+            avatar, 
             monthly_budget,
             days_per_week,
             hours_per_day,
@@ -40,8 +40,8 @@ const initDb = {
             5,
             5,
             4
-        );`);
-    
+        );`); 
+        
         await db.run(`INSERT INTO jobs(
             name, 
             daily_hours,
@@ -53,7 +53,7 @@ const initDb = {
             1,
             1617514376018 
         );`);
-    
+
         await db.run(`INSERT INTO jobs(
             name, 
             daily_hours,
@@ -65,9 +65,9 @@ const initDb = {
             47,
             1617514376018
         );`); 
-    
+        
         await db.close();
-
+             
     } 
  
 }
