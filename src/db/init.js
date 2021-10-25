@@ -33,7 +33,7 @@ const initDb = {
                 monthly_budget,
                 days_per_week,
                 hours_per_day,
-                vacation_per_day,
+                vacation_per_year,
                 value_hour ) VALUES (
                 "Jakeline",
                 "https://avatars.githubusercontent.com/u/14242834?v=4",
