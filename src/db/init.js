@@ -15,7 +15,7 @@ const initDb = {
                 monthly_budget INT,
                 days_per_week INT,
                 hours_per_day INT,
-                vacation_per_day INT,
+                vacation_per_year INT,
                 value_hour INT
             )`);  
             
@@ -38,10 +38,10 @@ const initDb = {
                 "Jakeline",
                 "https://avatars.githubusercontent.com/u/14242834?v=4",
                 8000,
-                5,
-                5,
-                4,
-                110
+                6,
+                6,
+                6,
+                160
             );`); 
             
             await db.run(`INSERT INTO jobs(
