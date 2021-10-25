@@ -443,7 +443,7 @@ Você evoluiu 🚀
 * [X] Inserir profile
 * [X] Inserir Jobs
 * [X] Instalar beekeeper
-* [X] Ver resultado no beekeeper
+* [X] Ver resultado no Beekeeper
 
 ### Profile
 	* [x]  Importar config no module 
@@ -454,7 +454,7 @@ Você evoluiu 🚀
 	* [x] Fechar banco de dados 
 	* [x] Normalizar os dados 
 	* [x] Retornar os dados normalizados
-	* [X]  Transformar index do controller em Async
+	* [X] Transformar index do controller em Async
 	* [X] Transformando index do DashboardController em Async
 
 ### Profile update()
