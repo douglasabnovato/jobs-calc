@@ -215,24 +215,24 @@ Qual a proposta deste projeto?
 - [x]  O que veremos até o final dessa aula?
 
 ### Salvar Job
-	* [x] Form job
-    - [x] method post
-    - [x] action="/job"
-	* [x] rota /job POST
-    - [x] req.body
-    - [x] urlencoded
-	* [x] Criar array de jobs
-    - [x] enviar para o index.ejs
-    - [x] .forEach
-    - [x] ajustes dos dados no index
-	* [x] Configurar jobs na criação de um novo Job
-    - [x] job id: pegar o id do ultimo item do array
-    - [x] created_at: Date.now()
-      - [x] para o cálculo de dias restantes
-    - [x] total-hours
-    - [x] daily-hours
-    - [x] name
-	* [x] Atualizar os jobs no index, antes de apresentar
+* [x] Form job
+- [x] method post
+- [x] action="/job"
+* [x] rota /job POST
+- [x] req.body
+- [x] urlencoded
+* [x] Criar array de jobs
+- [x] enviar para o index.ejs
+- [x] .forEach
+- [x] ajustes dos dados no index
+* [x] Configurar jobs na criação de um novo Job
+- [x] job id: pegar o id do ultimo item do array
+- [x] created_at: Date.now()
+    - [x] para o cálculo de dias restantes
+- [x] total-hours
+- [x] daily-hours
+- [x] name
+* [x] Atualizar os jobs no index, antes de apresentar
 
 ### Remaining calculation
   * [x] Devemos calcular sempre que apresentar o projeto, 
@@ -250,9 +250,9 @@ Qual a proposta deste projeto?
 	* [x] adicionar uma entrada no jobs[] para o prazo encerrado
 	
 ### Refatorar Jobs
-    - [x] Criar um Object Literal Jobs
-    - [x] Adicionar data em Jobs
-    - [x] Adicionar index() e create()
+- [x] Criar um Object Literal Jobs
+- [x] Adicionar data em Jobs
+- [x] Adicionar index() e create()
 
 ### Object Profile
 	* [x] data
@@ -316,17 +316,17 @@ Você evoluiu 🚀
 
 ## Qual a proposta deste projeto - parte 3? 
 
-* [ ] Organização e estudo
-* [ ] Plataforma e Comunidade
-* [ ] Mentalidade Dev
-* [ ] Praticar as tecnologias do Discover
+* [x] Organização e estudo
+* [x] Plataforma e Comunidade
+* [x] Mentalidade Dev
+* [x] Praticar as tecnologias do Discover
 
 ### O que você vai ganhar com isso?
 
-* [ ] Clareza prática
-* [ ] Entendimento da plataforma e comunidade
-* [ ] Projeto aplicando os conceitos do Discover
-* [ ] Bases necessárias para continuar sua jornada
+* [x] Clareza prática
+* [x] Entendimento da plataforma e comunidade
+* [x] Projeto aplicando os conceitos do Discover
+* [x] Bases necessárias para continuar sua jornada
 
 ### Dicas para ir até o fim
 
@@ -345,45 +345,45 @@ Você evoluiu 🚀
  * [X] Refatorar routes para nova forma de chamar views
 
 #### Refatorar Profile
-	* [X] Separar controller
-  * [X] Criar model
-	* [X] Separar data
-	* [X] Criar get no model
- 	* [X] Importar model Profile no ProfileController
-	* [X] Refatorar Profile.data para Profile.get()
-	* [X] Refatorar update do profile no model
+* [X] Separar controller
+* [X] Criar model
+* [X] Separar data
+* [X] Criar get no model
+* [X] Importar model Profile no ProfileController
+* [X] Refatorar Profile.data para Profile.get()
+* [X] Refatorar update do profile no model
 
 ### Refatorar Job
-	* [X] Mover controller para JobController
-	* [X] Criar pasta utils
-	* [X] Mover services de job para utils
-	* [X] Importar utils dentro de jobController
-	* [X] Refatorar chamada de job services para JobUtils
-  * [X] Mover Job data para model Job
-	* [X] Importar model Job dentro de Jobcontroller
-	* [X] Refatorar chamadas de job.data para Job
-	* [X] Criar update no model recebendo newData
-	* [X] Criar delete no model
+* [X] Mover controller para JobController
+* [X] Criar pasta utils
+* [X] Mover services de job para utils
+* [X] Importar utils dentro de jobController
+* [X] Refatorar chamada de job services para JobUtils
+* [X] Mover Job data para model Job
+* [X] Importar model Job dentro de Jobcontroller
+* [X] Refatorar chamadas de job.data para Job
+* [X] Criar update no model recebendo newData
+* [X] Criar delete no model
 
 ### Refatorar Dashboard
-	* [X] Passar index do JobController para DashboardController
-	* [X] Refatorar a chamada da rota "/" no routes
-	* [X] Importar model Job
-  * [X] Importar model Profile
-	* [X] Importar JobUtils
-	* [X] Refatorar chamadas de profile, job e utils
-	* [X] Passar profile para index.ejs
-  * [X] Refatorar os dados de profile no index.ejs
-  * [X] Criar StatusCount
-	* [X] Passar StatusCount para index.ejs
-	* [X] Refatorar os dados de contagem de status no index.ejs
-  * [X] Calcular freeHours
-	* [X] Passar freehours para index.ejs
-	* [X] Refatorar dados de freehours no index.ejs
-	* [X] Ajuste o alinhamento de campos de perfil
+* [X] Passar index do JobController para DashboardController
+* [X] Refatorar a chamada da rota "/" no routes
+* [X] Importar model Job
+* [X] Importar model Profile
+* [X] Importar JobUtils
+* [X] Refatorar chamadas de profile, job e utils
+* [X] Passar profile para index.ejs
+* [X] Refatorar os dados de profile no index.ejs
+* [X] Criar StatusCount
+* [X] Passar StatusCount para index.ejs
+* [X] Refatorar os dados de contagem de status no index.ejs
+* [X] Calcular freeHours
+* [X] Passar freehours para index.ejs
+* [X] Refatorar dados de freehours no index.ejs
+* [X] Ajuste o alinhamento de campos de perfil
 
 ### Banco de dados
-	* [X] Como funciona banco de dados e tabelas
+* [X] Como funciona banco de dados e tabelas
 
 ### Recap
 
@@ -511,6 +511,8 @@ Você evoluiu 🚀
 
 ## Encerramento - parte 5? 
 
+Nesse momento, as informações são para ajustar o processo de estudos, de prática e de como se preparar tanto tecnicamente quanto as soft skills.
+
 ### Oportunidades  
 
 - [x]  Salário
@@ -553,20 +555,20 @@ Seja uma pessoa preparada para as oportunidades
 
 ### Front end
 
-- [ ]  Conhecimento geral
-- [ ]  HTML
-    - [ ]  Estrutura
-- [ ]  CSS
-    - [ ]  Layout
-- [ ]  JS
-    - [ ]  Web Apis
-- [ ]  Fetch data
+- [x]  Conhecimento geral
+- [x]  HTML
+    - [x]  Estrutura
+- [x]  CSS
+    - [x]  Layout
+- [x]  JS
+    - [x]  Web Apis
+- [x]  Fetch data
 
 **Para praticar**
 
-- [ ]  Codar a primeira maratona
-- [ ]  1 Landing page
-- [ ]  1 projeto que consuma uma API
+- [x]  Codar a primeira maratona
+- [x]  1 Landing page - um projeto original
+- [x]  1 projeto que consuma uma API - um projeto original
 
 Paciência e persistência
 
@@ -574,19 +576,19 @@ Paciência e persistência
 
 ### NodeJS / Express
 
-- [ ]  Servidor
-- [ ]  middlewares
-- [ ]  routes
-- [ ]  CRUD
-- [ ]  APIs
+- [x]  Servidor
+- [x]  middlewares
+- [x]  routes
+- [x]  CRUD
+- [x]  APIs
 
 **Para praticar**
 
-- [ ]  2 projetos que envolvam CRUD
-    - [ ]  Lista de tarefas
-    - [ ]  Playlist de músicas favoritas
-- [ ]  1 projeto que irá consumir uma API
-- [ ]  1 projeto que envolva upload de arquivos
+- [x]  2 projetos que envolvam CRUD
+    - [x]  Lista de tarefas
+    - [x]  Playlist de músicas favoritas
+- [x]  1 projeto que irá consumir uma API
+- [x]  1 projeto que envolva upload de arquivos
 
 A prática leva ao aperfeiçoamento
 
@@ -594,24 +596,24 @@ A prática leva ao aperfeiçoamento
 
 ### Banco de Dados
 
-- [ ]  Como funciona
-- [ ]  Diferença entre SQL e NoSQL
-    - [ ]  SQL
-    - [ ]  MongoDB
-- [ ]  Arquitetura de dados
-- [ ]  Operações básicas: Inserir, Consultar, Alterar, Apagar
-- [ ]  Busca avançada
-- [ ]  Ordenação, Agrupamento, Paginação
+- [x]  Como funciona
+- [x]  Diferença entre SQL e NoSQL
+    - [x]  SQL
+    - [x]  MongoDB
+- [x]  Arquitetura de dados
+- [x]  Operações básicas: Inserir, Consultar, Alterar, Apagar
+- [x]  Busca avançada
+- [x]  Ordenação, Agrupamento, Paginação
 
 **Para praticar**
 
-- [ ]  1 projeto CRUD
-- [ ]  1 projeto que envolva diversos filtros de dados
-- [ ]  1 projeto que envolva paginação
-- [ ]  3 projetos que envolva relacionamentos
-    - [ ]  Produtos, Categorias
-    - [ ]  Usuários, Grupos
-    - [ ]  Blog, Comentários
+- [x]  1 projeto CRUD
+- [x]  1 projeto que envolva diversos filtros de dados
+- [x]  1 projeto que envolva paginação
+- [x]  3 projetos que envolva relacionamentos
+    - [x]  Produtos, Categorias
+    - [x]  Usuários, Grupos
+    - [x]  Blog, Comentários
 
 A chave do sucesso em programação está na repetição!
 
@@ -619,28 +621,28 @@ A chave do sucesso em programação está na repetição!
 
 ### Alinhando expectativas
 
-- [ ]  Continue a nadar
-- [ ]  Será desafiador
-- [ ]  Buscar contéudo e ajuda
+- [x]  Continue a nadar
+- [x]  Será desafiador
+- [x]  Buscar contéudo e ajuda
 
 ---
 
 ### Autenticação e Autorização
 
-- [ ]  Autenticação serve para mostrar quem é você
-- [ ]  Autorização serve para definir o que você pode ou não fazer no sistema
-- [ ]  Sign up/Sign In
-    - [ ]  Login e Senha
-    - [ ]  Validações
-    - [ ]  Envio de email
-- [ ]  Reset de senha
+- [x]  Autenticação serve para mostrar quem é você
+- [x]  Autorização serve para definir o que você pode ou não fazer no sistema
+- [x]  Sign up/Sign In
+    - [x]  Login e Senha
+    - [x]  Validações
+    - [x]  Envio de email
+- [x]  Reset de senha
 
 **Para praticar**
 
-- [ ]  1 projeto que envolva autenticação
-- [ ]  1 projeto que envolva autenticação e autorização
-- [ ]  1 projeto que envolva envio de email
-- [ ]  1 projeto que envolva reset de senha
+- [x]  1 projeto que envolva autenticação
+- [x]  1 projeto que envolva autenticação e autorização
+- [x]  1 projeto que envolva envio de email
+- [x]  1 projeto que envolva reset de senha
 
 Ao vencer essa etapa, você poderá utilizar ferramentas para criar as autenticações com as redes sociais
 
@@ -648,46 +650,46 @@ Ao vencer essa etapa, você poderá utilizar ferramentas para criar as autentica
 
 ### Mais ideas de aplicativos para treinar
 
-- [ ]  Encurtador de URL
-- [ ]  Ecommerce (mini)
-- [ ]  Stream de música e/ou vídeo
-- [ ]  Rede social (mini)
-- [ ]  APIs
-- [ ]  Clone
+- [x]  Encurtador de URL
+- [x]  Ecommerce (mini)
+- [x]  Stream de música e/ou vídeo
+- [x]  Rede social (mini)
+- [x]  APIs
+- [x]  Clone
 
 ---
 
 ### Alinhando expectativas
 
-- [ ]  Você terá produzido +20 mini apps
-- [ ]  Busque oportunidades e vagas
-    - [ ]  Não fique um dia sem procurar e entrar em contato com alguém, mostrando seu desejo de ingressar no mercado
-- [ ]  Essa busca de oportunidade é pra te trazer aprendizado e, talvez, uma vaga
+- [x]  Você terá produzido +20 mini apps
+- [x]  Busque oportunidades e vagas
+- [x]  Não fique um dia sem procurar e entrar em contato com alguém, mostrando seu desejo de ingressar no mercado
+- [x]  Essa busca de oportunidade é pra te trazer aprendizado e, talvez, uma vaga
 
 ---
 
 ### Mentalidade
 
-- [ ]  Soft-skills
-    - [ ]  Comunicação
-    - [ ]  Inglês
-    - [ ]  Resolução de problemas
-    - [ ]  Pró-atividade
-    - [ ]  Resiliência, Paciência, Persistência, Consistência
-- [ ]  Foco
-    - [ ]  Busque lembrar
-        - [ ]  seu momento
-        - [ ]  seu contexto
-        - [ ]  seu objetivo
-- [ ]  Comunidade
-    - [ ]  Você poderá ir mais rápido só, mas irá mais longe com alguém do seu lado
-    - [ ]  Busque ajuda
-    - [ ]  Faça parcerias em projetos
-- [ ]  #NeverStopLearning
-    - [ ]  O estudo é constante
-    - [ ]  O aprendizado é constante
-    - [ ]  Ainda há muito que aprender
-    - [ ]  Continue ....
+- [x]  Soft-skills
+    - [x]  Comunicação
+    - [x]  Inglês
+    - [x]  Resolução de problemas
+    - [x]  Pró-atividade
+    - [x]  Resiliência, Paciência, Persistência, Consistência
+- [x]  Foco
+    - [x]  Busque lembrar
+        - [x]  seu momento
+        - [x]  seu contexto
+        - [x]  seu objetivo
+- [x]  Comunidade
+    - [x]  Você poderá ir mais rápido só, mas irá mais longe com alguém do seu lado
+    - [x]  Busque ajuda
+    - [x]  Faça parcerias em projetos
+- [x]  #NeverStopLearning
+    - [x]  O estudo é constante
+    - [x]  O aprendizado é constante
+    - [x]  Ainda há muito que aprender
+    - [x]  Continue ....
 
 ## :memo: Licença
 
