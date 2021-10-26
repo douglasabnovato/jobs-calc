@@ -1,9 +1,10 @@
 const Database = require("../db/config");
 
 module.exports = {
-  async get() {
-    const db = await Database();
 
+  async get() {
+
+    const db = await Database(); 
     const data = await db.get(`SELECT * FROM profile`);
 
     await db.close();
@@ -15,11 +16,13 @@ module.exports = {
       "days-per-week": data.days_per_week,
       "hours-per-day": data.hours_per_day,
       "vacation-per-year": data.vacation_per_year,
-      "value-hour": data.value_hour,
+      "value-hour": data.value_hour
     };
+
   },
 
   async update(newData) {
+
     const db = await Database();
 
     db.run(`UPDATE profile SET
@@ -30,8 +33,9 @@ module.exports = {
       hours_per_day = ${newData["hours-per-day"]},
       vacation_per_year = ${newData["vacation-per-year"]},
       value_hour = ${newData["value-hour"]}
-      `);
+    `);
 
     await db.close();
+
   },
 };

@@ -1,7 +1,9 @@
 const Database = require("../db/config");
 
 module.exports = {
+
   async get() {
+
     const db = await Database();
 
     const jobs = await db.all(`SELECT * FROM jobs`);
@@ -15,6 +17,7 @@ module.exports = {
       "total-hours": job.total_hours,
       created_at: job.created_at,
     }));
+    
   },
 
   async update(updatedJob, jobId) {

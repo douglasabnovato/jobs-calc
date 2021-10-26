@@ -507,25 +507,25 @@ Você evoluiu 🚀
 
 ### Mission: Assistir aos cursos
 
-* [] Assistir o curso de Git e Github
+* [x] Assistir o curso de Git e Github
 
 ## Encerramento - parte 5? 
 
 ### Oportunidades  
 
-- [ ]  Salário
-- [ ]  Como se posicionar?
-    - [ ]  LinkedIn
-    - [ ]  Github
+- [x]  Salário
+- [x]  Como se posicionar?
+    - [x]  LinkedIn
+    - [x]  Github
 
 ### Alinhando expectativas
 
-- [ ]  Certo nível de complexidade para iniciantes
-    - [ ]  Dados, lógica de negócio, entendimento amplo do negócio
-- [ ]  Maior consistência que Front End
-    - [ ]  Front end existem muitas ferramentas
-- [ ]  Você gosta de mexer com dados e de entender as minúcias de um negócio?
-- [ ]  Você não liga muito para a aparência das coisas?
+- [x]  Certo nível de complexidade para iniciantes
+    - [x]  Dados, lógica de negócio, entendimento amplo do negócio
+- [x]  Maior consistência que Front End
+    - [x]  Front end existem muitas ferramentas
+- [x]  Você gosta de mexer com dados e de entender as minúcias de um negócio?
+- [x]  Você não liga muito para a aparência das coisas?
 
 ---
 
@@ -535,15 +535,15 @@ Direção é mais importante que velocidade.
 
 ### Visão geral
 
-- [ ]  Como funciona a WEB
-- [ ]  HTTP
-    - [ ]  Servidor e Cliente
-    - [ ]  Fluxo de comunicação
-- [ ]  Entendimento de computadores
-- [ ]  Estrutura de dados
-- [ ]  Lógica e Algoritmos
-- [ ]  Memória, Processamento
-- [ ]  Abstração, eficiência
+- [x]  Como funciona a WEB
+- [x]  HTTP
+    - [x]  Servidor e Cliente
+    - [x]  Fluxo de comunicação
+- [x]  Entendimento de computadores
+- [x]  Estrutura de dados
+- [x]  Lógica e Algoritmos
+- [x]  Memória, Processamento
+- [x]  Abstração, eficiência
 
 A maior parte desse conteúdo é técnico e serve para melhorar seu vocabulário e maneira de pensar como uma pessoa desenvolvedora
 

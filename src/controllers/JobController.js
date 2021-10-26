@@ -3,6 +3,7 @@ const JobUtils = require('../utils/JobUtils')
 const Profile = require('../model/Profile')
 
 module.exports = {
+  
     create(req, res) {
       return res.render("job")
     },
