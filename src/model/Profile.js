@@ -7,7 +7,7 @@ module.exports = {
         const db = await Database(); 
  
         const data = await db.get(`SELECT * FROM profile`);
-        
+
         await db.close(); 
     
         return {
@@ -39,4 +39,5 @@ module.exports = {
         await db.close(); 
               
     }
+    
 } 
