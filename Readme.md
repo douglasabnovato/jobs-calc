@@ -226,6 +226,7 @@ Qual a proposta deste projeto?
 - [x]  O que veremos até o final dessa aula?
 
 ### Salvar Job
+
 * [x] Form job
 - [x] method post
 - [x] action="/job"
@@ -246,6 +247,7 @@ Qual a proposta deste projeto?
 * [x] Atualizar os jobs no index, antes de apresentar
 
 ### Remaining calculation
+
   * [x] Devemos calcular sempre que apresentar o projeto, 
 				pois poderemos mudar os dados do projeto a qualquer momento
   * [x] remainingDays = total hours do job / daily hours do job
@@ -261,12 +263,14 @@ Qual a proposta deste projeto?
 	* [x] adicionar uma entrada no jobs[] para o prazo encerrado
 	
 ### Refatorar Jobs
+
 - [x] Criar um Object Literal Jobs
 - [x] Adicionar data em Jobs
 - [x] Adicionar index() e create()
 
 ### Object Profile
-	* [x] data
+
+  * [x] data
   * [x] update()
     - [x] Calculo de custo de hora
 	    * [x] weeksPerYear
