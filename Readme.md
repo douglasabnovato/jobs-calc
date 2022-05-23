@@ -128,11 +128,11 @@ leva tempo e mais conhecimento para que as coisas façam sentido.
 ###  Bora Codar
 
 * [x] Ambiente
-		* [x] NodeJS 
+	* [x] NodeJS 
     * [x] Navegador
     * [x] VS Code
         * [x] Tema
-				* [x] Fontes
+		* [x] Fontes
         * [x] Plugins
 * [x] Apresentar HTML e CSS
     * [x] index.html
