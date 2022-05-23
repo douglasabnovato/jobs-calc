@@ -688,6 +688,16 @@ Ao vencer essa etapa, você poderá utilizar ferramentas para criar as autentica
 
 ---
 
+### Próximo passo para frontend
+
+- [ ] 3.1. responsividade
+- [ ] 3.2. acessibilidade
+- [ ] 3.3. modo dark / light
+- [ ] 3.4. variação de cores
+- [ ] 3.5. hospedar aplicação
+
+---
+
 ### Alinhando expectativas
 
 - [x]  Você terá produzido +20 mini apps
