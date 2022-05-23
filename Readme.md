@@ -281,6 +281,7 @@ Qual a proposta deste projeto?
     - [x] redirect to /profile
 
 ### Editar job
+
   * [x] criar função show
     - [x] rota job/:id GET
     - [x] req.params
@@ -298,6 +299,7 @@ Qual a proposta deste projeto?
     - [x] redirect
 
 ### Delete job
+
   * [x] route /job/delete/:id POST
   * [x] Job.controller.delete()
   * [x] req.params.id
@@ -320,7 +322,6 @@ Você evoluiu 🚀
 * Spoiler
 * Participe da comunidade
 * Tire dúvidas, ajude outros devs e se envolva por lá
-
 * A aula vai ficar gravada
 * Nosso time estará na comunidade para tirar dúvidas e te deixar por dentro de tudo.
 
@@ -351,15 +352,18 @@ Você evoluiu 🚀
 * Conectar-se com outros devs [fazerem duplas]
 
 ### Bora Codar
+
 - [X]  Revisão da última aula
 - [X]  O que veremos até o final dessa aula?
 
 ### Refatorar
+
  * [X] Sinalizar local da pasta views no server
  * [X] Importar Path no server
  * [X] Refatorar routes para nova forma de chamar views
 
 #### Refatorar Profile
+
 * [X] Separar controller
 * [X] Criar model
 * [X] Separar data
@@ -369,6 +373,7 @@ Você evoluiu 🚀
 * [X] Refatorar update do profile no model
 
 ### Refatorar Job
+
 * [X] Mover controller para JobController
 * [X] Criar pasta utils
 * [X] Mover services de job para utils
@@ -381,6 +386,7 @@ Você evoluiu 🚀
 * [X] Criar delete no model
 
 ### Refatorar Dashboard
+
 * [X] Passar index do JobController para DashboardController
 * [X] Refatorar a chamada da rota "/" no routes
 * [X] Importar model Job
@@ -442,6 +448,7 @@ Você evoluiu 🚀
 * Conectar-se com outros devs [fazerem duplas]
 
 ### Bora Codar
+
 - [X]  Revisão da última aula
 - [X]  O que veremos até o final dessa aula?
 
@@ -449,6 +456,7 @@ Você evoluiu 🚀
 * [X] Save JobController
 
 ### Banco de dados
+
 * [X] Instalar SQLite: `npm install sqlite3` e `npm install sqlite`
 * [X] Criar config
 * [X] Criar init
@@ -464,6 +472,7 @@ Você evoluiu 🚀
 * [x]  Importar config no module 
 
 ### Profile get()
+
 * [x] iniciar banco de dados
 * [x] SELECT de profile
 * [x] Fechar banco de dados 
@@ -473,15 +482,18 @@ Você evoluiu 🚀
 * [X] Transformando index do DashboardController em Async
 
 ### Profile update()
+
 * [X] iniciar banco de dados
 * [X] UPDATE de profile
 * [X] Fechar banco de dados 
 * [X] Transformando update no controler em Async
 
 ### Jobs 
+
 * [X] Importando config no module
 
 ### Jobs show()
+
 * [X] iniciar banco de dados
 * [X] SELECT de job
 * [X] Fechar banco de dados 
@@ -490,16 +502,19 @@ Você evoluiu 🚀
 * [X] Transformando show do controller em Async
 
 ### Jobs create()
+
 * [X] iniciar banco de dados
 * [X] INSERT de newJob
 * [X] Fechar banco de dados
 
 ### Jobs update()
+
 * [X] iniciar banco de dados
 * [X] UPDATE de job
 * [X] Fechar banco de dados 
 
 ### Jobs delete()
+
 * [X] iniciar banco de dados
 * [X] DELETE job
 * [X] Fechar banco de dados 
@@ -516,7 +531,6 @@ Você evoluiu 🚀
 * Spoiler
 * Participe da comunidade
 * Tire dúvidas, ajude outros devs e se envolva por lá
-
 * A aula vai ficar gravada
 * Nosso time estará na comunidade para tirar dúvidas e te deixar por dentro de tudo.
 
