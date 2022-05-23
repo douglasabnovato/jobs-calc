@@ -44,6 +44,17 @@ O JobsCalc é uma aplicação de estimativa de cálculo para projetos freelancer
 Você pode visualizar o layout do projeto através [desse link](https://www.figma.com/file/s4fytPFbDiSkv4GPSfKaLE/Jobs-Planning). 
 É necessário ter conta no [Figma](https://figma.com) para acessá-lo.
 
+### 💻 Desenvolvido
+
+---
+
+- Telas terminadas
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+  <img alt="Um site de orçamento de job" title="#JobsCalc" src="./.github/tela-1.jpg" width="400px"/>
+  <img alt="Um site de orçamento de job" title="#JobsCalc" src="./.github/tela-2.jpg" width="400px"/>
+  <img alt="Um site de orçamento de job" title="#JobsCalc" src="./.github/tela-3.jpg" width="400px"/>
+</p>
+
 ## Qual a proposta deste projeto - parte 1? 
 
 - [x] Organização e estudo
