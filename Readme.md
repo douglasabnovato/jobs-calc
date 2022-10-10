@@ -738,5 +738,4 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](.github/LICENSE.
 
 Feito com ♥ by [douglasabnovato!](https://www.linkedin.com/in/douglasabnovato/) :wave: 
 
-Projeto prático jobs calc do treinamento Maratona Discover Edição 2 da Rocketseat aplicado pelo Mayk Brito. <br/>
 :. De [Mayk Brito - Rocketseat - Maratona Discover Edição 2](https://rocketseat.com.br/)
