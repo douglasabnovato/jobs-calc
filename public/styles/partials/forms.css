@@ -33,7 +33,7 @@ label {
 
   font-family: IBM Plex Sans;
   font-weight: 500;
-  color: #787880;
+  color: #5F5F68;
 
   margin-bottom: 1rem;
 }
@@ -55,7 +55,7 @@ input {
 }
 
 ::placeholder {
-  color: #BFBFCC;
+  color: #6B6B78;
 }
  
 .input-wrapper{

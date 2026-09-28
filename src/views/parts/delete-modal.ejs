@@ -1,0 +1,12 @@
+<div class="modal-wrapper" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-desc">
+    <img src="/images/trash-48.svg" alt="" />
+    <h3 id="modal-title">Excluir job</h3>
+    <p id="modal-desc">Quer mesmo excluir esse job? <br />Ele será apagado para sempre.</p>
+    <footer>
+      <button type="button" class="button gray" data-cancel>Cancelar</button>
+      <button class="button red" type="submit" form="delete-job">Excluir job</button>
+    </footer>
+  </div>
+  <form method="post" action="<%= action %>" id="delete-job"></form>
+</div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <%- include('parts/head', { title: String(status), page: 'job' }) %>
+</head>
+<body id="page-job">
+  <%- include('parts/page-header', { title: String(status) }) %>
+  <main class="container error-page">
+    <p><%= message %></p>
+    <a class="button orange" href="/">Voltar ao painel</a>
+  </main>
+</body>
+</html>

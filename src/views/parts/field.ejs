@@ -1,0 +1,6 @@
+<div class="input-wrapper">
+  <label for="<%= name %>"><%- label %></label>
+  <input id="<%= name %>" name="<%= name %>" type="<%= type %>" <% if (typeof inputmode !== 'undefined') { %>inputmode="<%= inputmode %>"<% } %>
+    value="<%= value %>" <%= required ? 'required' : '' %> aria-describedby="erro-<%= name %>" <% if (error) { %>aria-invalid="true"<% } %> />
+  <p class="field-error" id="erro-<%= name %>"><%= error || '' %></p>
+</div>

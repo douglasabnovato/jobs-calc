@@ -1,128 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#41414C" />
-    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
-    <title>JobsCalc</title>
-
-    <link rel="stylesheet" href="/styles/main.css" />
-    <link rel="stylesheet" href="/styles/partials/page-header.css" />
-    <link rel="stylesheet" href="/styles/partials/cards.css" />
-    <link rel="stylesheet" href="/styles/partials/buttons.css" />
-    <link rel="stylesheet" href="/styles/partials/forms.css" />
-    <link rel="stylesheet" href="/styles/partials/animations.css" />
-    <link rel="stylesheet" href="/styles/pages/profile.css" />
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    
-  </head>
-  <body id="page-profile">
-
-    <%- include('parts/page-header', { title: 'Meu Perfil'}) %>
-
-
-    <div class="container animate-up delay-2">
-      <aside class="card">
-        <img src="<%= profile.avatar %> " alt="<%= profile.name %> ">
-        <h2><%= profile.name %> </h2>
-        <p>
-          O valor da sua hora é <br/>
-          <strong>R$ <%= profile["value-hour"].toFixed(2).replace(".", ",") %> </strong>
-        </p>
-        <button class="button green" form="form-profile" type="submit">Salvar dados</button>
-      </aside>
-      <main>
-
-        <form 
-          id="form-profile" 
-          method="post" 
-          action="/profile">
-          <fieldset>
-            <legend>Dados do perfil</legend>
-            <div class="separator light"></div>
-
-            <div class="input-group">
-              <div class="input-wrapper">
-                <label for="name">Nome</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name" 
-                  value="<%= profile.name %>" />
-              </div>
-
-              <div class="input-wrapper">
-                <label for="avatar">Link da foto</label>
-                <input 
-                placeholder="https://"
-                type="url" 
-                id="avatar" 
-                name="avatar"
-                value="<%= profile.avatar %>" />
-              </div>
-            </div>
-          </fieldset>
-
-          <fieldset>
-            <legend>Planejamento</legend>
-            <div class="separator light"> </div>
-
-            <div class="input-group">
-              <div class="input-wrapper">
-                <label for="monthly-budget">Quanto eu <br/>quero ganhar por mês?</label>
-                <input 
-                  type="amount"
-                  step="0.1" 
-                  id="monthly-budget" 
-                  name="monthly-budget" 
-                  placeholder="R$"
-                  value="<%= profile["monthly-budget"] %>"/>
-              </div>
-
-              <div class="input-wrapper">
-                <label for="hours-per-day">Quantas horas <br/>
-                  quero trabalhar por dia?</label>
-                <input 
-                  type="number"
-                  id="hours-per-day" 
-                  name="hours-per-day"
-                  value="<%= profile["hours-per-day"] %>" />
-              </div>
-            </div>
-
-            <div class="input-group">
-              <div class="input-wrapper">
-                <label for="days-per-week">Quantos dias <br/>quero
-                  trabalhar por semana?</label>
-                <input
-                  type="number"
-                  id="days-per-week" 
-                  name="days-per-week"
-                  value="<%= profile["days-per-week"] %>" />
-              </div>
-
-              <div class="input-wrapper">
-                <label for="vacation-per-year">Quantas semanas <br/>
-                  por ano você quer tirar férias?</label>
-                <input 
-                  type="number" 
-                  id="vacation-per-year" 
-                  name="vacation-per-year"
-                  value="<%= profile["vacation-per-year"] %>" />
-              </div>
-            </div>
-          </fieldset>
-    
-        </form>
-      </main>
-    </div>
-    <!-- end container -->
-  </body>
+<head>
+  <%- include('parts/head', { title: 'Meu perfil', page: 'profile' }) %>
+</head>
+<body id="page-profile">
+  <%- include('parts/page-header', { title: 'Meu perfil' }) %>
+  <% const f = form || { name: profile.name, avatar: profile.avatar, 'monthly-budget': (profile.monthlyBudgetCents / 100).toFixed(2).replace('.', ','), 'hours-per-day': String(profile.hoursPerDay).replace('.', ','), 'days-per-week': profile.daysPerWeek, 'vacation-per-year': profile.vacationPerYear }; %>
+  <div class="container animate-up delay-2">
+    <aside class="card">
+      <% if (profile.avatar) { %><img src="<%= profile.avatar %>" alt="" /><% } %>
+      <h2><%= profile.name %></h2>
+      <p>O valor da sua hora é <br /><strong><%= formatBRL(hourCents) %></strong></p>
+      <button class="button green" form="form-profile" type="submit">Salvar dados</button>
+    </aside>
+    <main>
+      <% if (flash) { %><p class="flash" role="status">Perfil salvo. O valor da hora foi recalculado.</p><% } %>
+      <form id="form-profile" method="post" action="/profile" novalidate>
+        <fieldset>
+          <legend>Dados do perfil</legend>
+          <div class="separator light"></div>
+          <% if (Object.keys(errors).length) { %><p class="form-alert" role="alert">Revise os campos destacados.</p><% } %>
+          <div class="input-group">
+            <%- include('parts/field', { name: 'name', label: 'Nome', type: 'text', value: f.name, required: true, error: errors.name }) %>
+            <%- include('parts/field', { name: 'avatar', label: 'Link da foto (https://, opcional)', type: 'url', value: f.avatar, required: false, error: errors.avatar }) %>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Planejamento</legend>
+          <div class="separator light"></div>
+          <div class="input-group">
+            <%- include('parts/field', { name: 'monthly-budget', label: 'Quanto eu <br/>quero ganhar por mês? (R$)', type: 'text', inputmode: 'decimal', value: f['monthly-budget'], required: true, error: errors['monthly-budget'] }) %>
+            <%- include('parts/field', { name: 'hours-per-day', label: 'Quantas horas <br/>quero trabalhar por dia?', type: 'text', inputmode: 'decimal', value: f['hours-per-day'], required: true, error: errors['hours-per-day'] }) %>
+          </div>
+          <div class="input-group">
+            <%- include('parts/field', { name: 'days-per-week', label: 'Quantos dias <br/>quero trabalhar por semana?', type: 'number', value: f['days-per-week'], required: true, error: errors['days-per-week'] }) %>
+            <%- include('parts/field', { name: 'vacation-per-year', label: 'Quantas semanas <br/>por ano quero de férias?', type: 'number', value: f['vacation-per-year'], required: true, error: errors['vacation-per-year'] }) %>
+          </div>
+        </fieldset>
+      </form>
+    </main>
+  </div>
+</body>
 </html>

@@ -1,16 +1,15 @@
-import Modal from './modal.js';
+/* Painel: liga o botão de excluir de cada card ao modal de confirmação */
+import Modal from "./modal.js";
 
-const modal = Modal({ animateClasses: ['animate-pop', 'back'] })
+const modal = Modal({ animateClasses: ["animate-pop", "back"] });
+const deleteForm = document.querySelector("#delete-job");
+const title = document.querySelector("#modal-title");
 
-const cards = document.querySelectorAll('.cards .card')
-const deleteForm = document.querySelector('#delete-job')
-
-for (let card of cards) {
-  const cardId = card.dataset.id
-
-  const deleteButton = card.querySelector('button.delete')
-  deleteButton.onclick = () => {
-    modal.open()
-    deleteForm.setAttribute('action', '/job/delete/' + cardId)
-  }
-}
+document.querySelectorAll(".cards .card").forEach((card) => {
+  card.querySelector("button.delete").addEventListener("click", (event) => {
+    deleteForm.setAttribute("action", "/job/delete/" + card.dataset.id);
+    title.textContent = "Excluir “" + card.dataset.name + "”";
+    modal.open(event);
+  });
+});
+/* Fim de index.js */

@@ -1,21 +1,19 @@
-const express = require("express")
-const server = express()
-const routes = require("./routes")
-const path = require("path")
+/* Ponto de entrada do JobsCalc */
+const config = require("./config");
+const { openDatabase } = require("./db/connection");
+const { createRepositories } = require("./repositories");
+const { createApp } = require("./app");
 
-// usando template engine
-server.set('view engine',  'ejs')
+/* Abre o banco e sobe o servidor HTTP */
+function main() {
+  const repos = createRepositories(openDatabase(config.databaseFile));
+  const app = createApp({
+    repos,
+    auth: { user: config.basicAuthUser, password: config.basicAuthPassword },
+    trustProxy: config.trustProxy,
+  });
+  app.listen(config.port, () => console.log(`JobsCalc em http://localhost:${config.port}`));
+}
 
-// Mudar a localização da pasta views
-server.set('views', path.join(__dirname, 'views'))
-
-//habilitar arquivos statics
-server.use(express.static("public"))
-
-// usar o req.body
-server.use(express.urlencoded({ extended: true }))
-
-// routes
-server.use(routes)
-
-server.listen(3000, () => console.log('rodando'))
+main();
+/* Fim de server.js */

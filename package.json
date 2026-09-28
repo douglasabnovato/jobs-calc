@@ -1,26 +1,29 @@
 {
   "name": "jobs-calc",
-  "version": "1.0.0",
-  "description": "Freelance Calculator",
+  "version": "2.0.0",
+  "description": "Calculadora de freelas: valor da hora, orçamento e prazo de cada job.",
   "main": "src/server.js",
   "scripts": {
-    "dev": "nodemon .",
-    "init-db": "node src/db/init.js"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/douglasabnovato/jobs-calc.git"
   },
-  "keywords": [],
   "author": "@douglasabnovato",
   "license": "MIT",
   "dependencies": {
-    "ejs": "^3.1.6",
-    "express": "^4.17.1",
-    "sqlite": "^4.0.23",
-    "sqlite3": "^5.0.2"
+    "better-sqlite3": "^11.10.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "helmet": "^8.1.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13"
+    "supertest": "^7.1.0"
   }
 }

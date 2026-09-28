@@ -21,19 +21,19 @@
 
   --color-card-background: var(--color-text);
   --color-card-title: #5A5A66;
-  --color-card-label: #BFBFCC;
-  --color-card-content: #787880;
+  --color-card-label: #6B6B78;
+  --color-card-content: #5F5F68;
 
   --color-cancel: #E1E3E5;
-  --color-delete: #EB3B35; 
-  --color-save: #36B336;
+  --color-delete: #C62828; 
+  --color-save: #1E7B1E;
   
   --color-badge-progress-text: var(--color-save);
   --color-badge-progress-background: #E8F8E8;
   --color-badge-done-text: var(--color-delete);
   --color-badge-done-background:#FAECEB;
 
-  --color-header-inner-title: var(--color-card-label)
+  --color-header-inner-title: #BFBFCC;
 
 }
 
@@ -111,3 +111,17 @@ a {
 .flex {
   display: flex;
 }
+/* Acessibilidade e estados (ciclo MVP) */
+:focus-visible { outline: 3px solid #1565C0; outline-offset: 2px; }
+.field-error { min-height: 1.25rem; margin-top: .25rem; color: #B71C1C; font-weight: 600; font-size: .875rem; }
+[aria-invalid="true"] { border: 2px solid #B71C1C !important; }
+.form-alert { background: #FDECEA; color: #8E1B1B; padding: .75rem 1rem; border-radius: .313rem; font-weight: 600; margin-bottom: 1rem; }
+.flash { background: #E8F5E9; color: #1B5E20; padding: .75rem 1rem; border-radius: .313rem; font-weight: 600; margin: 1rem 0; }
+.empty { color: var(--color-card-content); text-align: center; padding: 3rem 0; }
+ul.cards { list-style: none; padding: 0; }
+.modal-wrapper[hidden] { display: none; }
+.error-page { padding: 4rem 0; text-align: center; color: var(--color-card-content); }
+.error-page .button { display: inline-flex; margin-top: 2rem; }
+button.button { cursor: pointer; border: 0; font: inherit; }
+label { color: #5F5F68; }
+::placeholder { color: #6B6B78; }
