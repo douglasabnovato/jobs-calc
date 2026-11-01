@@ -8,6 +8,15 @@
 
 <p align="center"><img alt="Tela do JobsCalc" src="./.github/jobs-calc.jpg" width="720" /></p>
 
+## 🧠 O que aprendi
+
+> Proposta de 01/11/2026, escrita a partir do código e das dependências. Ajuste com a sua experiência.
+
+- Modelar um cálculo de negócio (valor de projetos) no servidor com Express e EJS.
+- Guardar dados em SQLite com `better-sqlite3`.
+- Proteger cabeçalhos com Helmet.
+- Testar a aplicação com `node --test`.
+
 ## Problema e proposta
 
 Quem trabalha como freelancer costuma cobrar "no chute". O JobsCalc parte da renda mensal desejada, dos dias e horas de trabalho e das férias para calcular o **valor da hora**, e usa esse valor para orçar cada job e mostrar quantas horas livres sobram no dia.
