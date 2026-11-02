@@ -45,7 +45,7 @@ npm run dev             # http://localhost:3000
 npm test                # 10 testes
 ```
 
-Para reaproveitar seus dados antigos, rode uma vez com `DATABASE_FILE=./dbjobscalc.sqlite`: a migration converte os valores para centavos e mantém os jobs.
+Para reaproveitar dados de uma cópia local antiga do banco, que não está mais no Git, rode uma vez com `DATABASE_FILE=./dbjobscalc.sqlite`: a migration converte os valores para centavos e mantém os jobs.
 
 ## Publicação
 
