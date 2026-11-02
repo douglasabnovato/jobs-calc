@@ -125,3 +125,11 @@ ul.cards { list-style: none; padding: 0; }
 button.button { cursor: pointer; border: 0; font: inherit; }
 label { color: #5F5F68; }
 ::placeholder { color: #6B6B78; }
+/* Celular: formulários e cartão lateral em uma coluna, sem rolagem horizontal */
+@media (max-width: 800px) {
+  aside.card { width: 100%; max-width: 100%; margin: 0 0 2rem; box-sizing: border-box; padding: 2rem 1.5rem; }
+  main, form { min-width: 0; max-width: 100%; }
+  .container, main.container, #page-profile .container, #page-job .container { flex-direction: column; flex-wrap: wrap; }
+  .input-group { flex-wrap: wrap; }
+  .input-wrapper { min-width: 0; max-width: 100%; }
+}
