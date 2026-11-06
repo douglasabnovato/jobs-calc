@@ -2,12 +2,17 @@
 const WEEKS_PER_YEAR = 52;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+/* Horas trabalhadas por mês, já descontadas as férias (média do ano) */
+function monthlyHours(profile) {
+  const weeksPerMonth = (WEEKS_PER_YEAR - profile.vacationPerYear) / 12;
+  return Math.max(0, profile.hoursPerDay * profile.daysPerWeek * weeksPerMonth);
+}
+
 /* Valor da hora em centavos: renda mensal ÷ horas trabalhadas no mês */
 function valueHourCents(profile) {
-  const weeksPerMonth = (WEEKS_PER_YEAR - profile.vacationPerYear) / 12;
-  const monthlyHours = profile.hoursPerDay * profile.daysPerWeek * weeksPerMonth;
-  if (monthlyHours <= 0) return 0;
-  return Math.round(profile.monthlyBudgetCents / monthlyHours);
+  const hours = monthlyHours(profile);
+  if (hours <= 0) return 0;
+  return Math.round(profile.monthlyBudgetCents / hours);
 }
 
 /* Dias restantes até a entrega; usa o relógio injetado para ser testável */
@@ -43,5 +48,5 @@ function formatBRL(cents) {
   return (cents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-module.exports = { valueHourCents, remainingDays, budgetCents, buildDashboard, formatBRL, WEEKS_PER_YEAR };
+module.exports = { monthlyHours, valueHourCents, remainingDays, budgetCents, buildDashboard, formatBRL, WEEKS_PER_YEAR };
 /* Fim de calculations.js */
