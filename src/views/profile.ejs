@@ -11,6 +11,7 @@
       <% if (profile.avatar) { %><img src="<%= profile.avatar %>" alt="" /><% } %>
       <h2><%= profile.name %></h2>
       <p>O valor da sua hora é <br /><strong><%= formatBRL(hourCents) %></strong></p>
+      <p class="hours-month">Base do cálculo: <%= hoursMonth.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) %> horas de trabalho por mês, já sem as férias.</p>
       <button class="button green" form="form-profile" type="submit">Salvar dados</button>
     </aside>
     <main>
