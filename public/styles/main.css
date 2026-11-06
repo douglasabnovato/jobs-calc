@@ -112,7 +112,9 @@ a {
   display: flex;
 }
 /* Acessibilidade e estados (ciclo MVP) */
-:focus-visible { outline: 3px solid #1565C0; outline-offset: 2px; }
+/* Foco em duas cores (técnica C40 do W3C): o anel azul aparece no fundo claro e o halo branco no fundo escuro */
+:focus-visible { outline: 3px solid #1565C0; outline-offset: 2px; box-shadow: 0 0 0 6px #FFFFFF; }
+.hours-month { font-size: .875rem; margin-top: .5rem; }
 .field-error { min-height: 1.25rem; margin-top: .25rem; color: #B71C1C; font-weight: 600; font-size: .875rem; }
 [aria-invalid="true"] { border: 2px solid #B71C1C !important; }
 .form-alert { background: #FDECEA; color: #8E1B1B; padding: .75rem 1rem; border-radius: .313rem; font-weight: 600; margin-bottom: 1rem; }

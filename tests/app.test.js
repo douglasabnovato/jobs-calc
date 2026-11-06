@@ -105,3 +105,30 @@ test("migração converte o banco legado (valores em reais → centavos)", () =>
   assert.equal(repos.jobs.find(6).name, "Dev Frontend Jr.");
 });
 /* Fim de app.test.js */
+
+test("horas por mês: 6h/dia, 5 dias, 4 semanas de férias dá 120 h; perfil mostra a base do cálculo", async () => {
+  assert.equal(calc.monthlyHours({ hoursPerDay: 6, daysPerWeek: 5, vacationPerYear: 4 }), 120);
+  assert.equal(calc.monthlyHours({ hoursPerDay: 6, daysPerWeek: 5, vacationPerYear: 60 }), 0);
+  const { app, repos } = build();
+  repos.profile.update({ ...repos.profile.get(), hoursPerDay: 6, daysPerWeek: 5, vacationPerYear: 4 });
+  const res = await request(app).get("/profile").expect(200);
+  assert.match(res.text, /120 horas de trabalho por mês/);
+});
+
+test("falha inesperada responde 500 com a página de erro", async () => {
+  const quebrado = { profile: { get: () => { throw new Error("banco fora"); } }, jobs: { all: () => [] } };
+  const app = createApp({ repos: quebrado, now: () => NOW });
+  const original = console.error;
+  console.error = () => {};
+  try {
+    const res = await request(app).get("/").expect(500);
+    assert.match(res.text, /Algo deu errado/);
+  } finally {
+    console.error = original;
+  }
+});
+
+test("foco visível em duas cores no CSS", () => {
+  const css = require("fs").readFileSync(require("path").join(__dirname, "..", "public", "styles", "main.css"), "utf8");
+  assert.match(css, /:focus-visible \{ outline: 3px solid #1565C0;[^}]*box-shadow: 0 0 0 6px #FFFFFF/);
+});
