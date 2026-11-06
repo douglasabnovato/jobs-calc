@@ -58,7 +58,7 @@ Branch principal: **`master`**.
 
 1. `cd /c/ambiente-projeto/ser-mvp/jobs-calc`
 2. Apagar o código antigo substituído pelas camadas novas (sai do Git e do disco):
-   `git rm -r src/controllers src/model src/utils/jobUtils.js src/db/config.js src/db/init.js src/routes.js`
+   Feito em 06/11/2026: `src/controllers`, `src/model`, `src/utils`, `src/db/config.js`, `src/db/init.js` e `src/routes.js` saíram do Git.
 3. Opcional, recomendado: parar de versionar o banco antigo (o arquivo continua no seu disco):
    `git rm --cached dbjobscalc.sqlite`
 4. `npm install`
@@ -71,8 +71,7 @@ Branch principal: **`master`**.
 
 ### Etapa 2 · Subir para o GitHub
 
-1. Ativar o CI (a pasta `.github` é protegida para a ferramenta que preparou o projeto, então o arquivo veio em `ci/`):
-   `mkdir -p .github/workflows && mv ci/github-actions-ci.yml .github/workflows/ci.yml && rmdir ci`
+1. CI: já ativo em `.github/workflows/ci.yml`. A cópia antiga em `ci/` saiu em 06/11/2026.
 2. `git status` (não podem aparecer `node_modules/`, `data/`, `.env` nem `dbjobscalc.sqlite` como arquivo novo)
 3. `git add -A`
 4. `git commit -m "feat(deploy): Node 22, SQLite em /tmp, senha obrigatória em produção, deploy automático no Render e CI"`
