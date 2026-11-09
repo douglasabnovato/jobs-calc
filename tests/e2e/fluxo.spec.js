@@ -17,7 +17,7 @@ test("perfil, job no painel e exclusão só com teclado", async ({ page }, info)
   await page.getByLabel(/quero trabalhar por semana/).fill("5");
   await page.getByLabel(/semanas.*de férias/).fill("4");
   await page.getByRole("button", { name: "Salvar dados" }).click();
-  await expect(page.getByRole("status")).toHaveText(/Perfil salvo/);
+  await expect(page.locator("p.flash")).toHaveText(/Perfil salvo/);
   await expect(page.locator("aside strong")).toHaveText(/R\$\s52,00/);
   await expect(page.locator(".hours-month")).toContainText("100 horas");
 
@@ -29,7 +29,7 @@ test("perfil, job no painel e exclusão só com teclado", async ({ page }, info)
   await page.getByLabel(/Estimativa de.*horas/).fill("10");
   await page.getByRole("button", { name: "Salvar" }).click();
   await expect(page).toHaveURL(/\/\?ok=criado$/);
-  await expect(page.getByRole("status")).toHaveText("Job criado.");
+  await expect(page.locator("p.flash")).toHaveText("Job criado.");
   const card = page.locator("li.card", { hasText: job });
   await expect(card.locator(".deadline p")).toHaveText("5 dias para a entrega");
   await expect(card.locator(".amount p")).toHaveText(/R\$\s520,00/);
@@ -45,7 +45,7 @@ test("perfil, job no painel e exclusão só com teclado", async ({ page }, info)
   await expect(dialog.getByRole("button", { name: "Excluir job" })).toBeFocused();
   await page.keyboard.press("Enter");
   await expect(page).toHaveURL(/\/\?ok=excluido$/);
-  await expect(page.getByRole("status")).toHaveText("Job excluído.");
+  await expect(page.locator("p.flash")).toHaveText("Job excluído.");
   await expect(page.locator("li.card", { hasText: job })).toHaveCount(0);
 });
 
@@ -56,18 +56,19 @@ test("job inválido mostra erro por campo e não cria nada", async ({ page }) =>
   await expect(page.getByLabel("Nome do job")).toHaveAttribute("aria-invalid", "true");
 });
 
-test("Esc fecha a confirmação e o foco volta ao botão de excluir", async ({ page }) => {
+test("Esc fecha a confirmação e o foco volta ao botão de excluir", async ({ page }, info) => {
+  const nome = `Job para cancelar ${info.project.name}`;
   await page.goto("/job");
-  await page.getByLabel("Nome do job").fill("Job para cancelar");
+  await page.getByLabel("Nome do job").fill(nome);
   await page.getByLabel(/horas.*por dia vai dedicar/).fill("1");
   await page.getByLabel(/Estimativa de.*horas/).fill("3");
   await page.getByRole("button", { name: "Salvar" }).click();
-  const excluir = page.getByRole("button", { name: "Excluir Job para cancelar" });
+  const excluir = page.getByRole("button", { name: `Excluir ${nome}` });
   await excluir.click();
   await expect(page.getByRole("dialog")).toBeVisible();
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toBeHidden();
   await expect(excluir).toBeFocused();
-  await expect(page.locator("li.card", { hasText: "Job para cancelar" })).toHaveCount(1);
+  await expect(page.locator("li.card", { hasText: nome })).toHaveCount(1);
 });
 /* Fim de fluxo.spec.js */

@@ -16,6 +16,8 @@ module.exports = defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     trace: "retain-on-failure",
+    /* Sem animação de entrada: o axe mede o contraste com a opacidade final */
+    reducedMotion: "reduce",
     /* Fora do CI dá para apontar um Chromium já instalado (PW_CHROMIUM) */
     launchOptions: process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {},
   },
