@@ -36,6 +36,8 @@ const MIGRATIONS = [
    DROP TABLE profile; DROP TABLE jobs;
    ALTER TABLE profile_v2 RENAME TO profile;
    ALTER TABLE jobs_v2 RENAME TO jobs;`,
+  /* #13: parte do tempo não é cobrada; 100% mantém o valor da hora dos perfis existentes */
+  `ALTER TABLE profile ADD COLUMN billable_percent INTEGER NOT NULL DEFAULT 100 CHECK (billable_percent BETWEEN 10 AND 100);`,
 ];
 
 const DEFAULT_PROFILE = {

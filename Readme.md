@@ -17,27 +17,26 @@
 - Proteger cabeçalhos com Helmet.
 - Testar a aplicação com `node --test`.
 
-## Estado e próximos passos (ciclo de 03/11/2026)
+## Estado e próximos passos (ciclo de 07/11/2026)
 
-**O que foi feito** (06/11/2026, PRs #16 e #17)
-- O perfil mostra as horas de trabalho por mês usadas no valor da hora.
-- Foco visível em duas cores, que aparece também no cabeçalho escuro.
-- Teste da página 500; agora são 13 testes.
-- CI também nos PRs para `developer/**`.
-- Código legado removido (`routes.js`, `controllers`, `model`, `db/config.js`, `ci/`); `npm audit` sem alertas.
-- `docs/MVP.md` revisto pela régua de estudo: 7 de 10 critérios aplicáveis.
+Projeto de estudo (N1): 8 de 10 critérios aplicáveis atendidos. **Finalizado**: os dois que faltam (#10 e #11) dependem do responsável.
+
+**O que foi feito**
+- 06/11 (PRs #16 e #17): horas por mês no perfil, foco visível em duas cores, teste da página 500, CI nos PRs para `developer/**`, código legado removido.
+- 07/11 (PR #18): os formulários voltaram a salvar no navegador (antes, todo POST feito pelo Chrome dava 403 por `Origin: null`); percentual de horas cobradas do cliente no perfil (#13); testes de interface com Playwright e axe no CI (#14); título do diálogo de exclusão e animações acessíveis.
 
 **O que queremos fazer**
-- [#13](https://github.com/douglasabnovato/jobs-calc/issues/13) Percentual de horas faturáveis no perfil.
-- [#14](https://github.com/douglasabnovato/jobs-calc/issues/14) Teste do cadastro de job no navegador.
+- [#19](https://github.com/douglasabnovato/jobs-calc/issues/19) Fundo inerte com a confirmação de exclusão aberta.
+- [#21](https://github.com/douglasabnovato/jobs-calc/issues/21) Recusar POST sem `Origin` e sem `Referer`.
 - [#15](https://github.com/douglasabnovato/jobs-calc/issues/15) `better-sqlite3` 12 para instalar no Node 24.
+- [#20](https://github.com/douglasabnovato/jobs-calc/issues/20) Mesclar o ciclo de 07/11 na `master` (responsável).
 - [#10](https://github.com/douglasabnovato/jobs-calc/issues/10) Proteger a `master` (responsável).
 - [#11](https://github.com/douglasabnovato/jobs-calc/issues/11) Decidir o histórico com o banco da renda mensal (responsável).
 - [#12](https://github.com/douglasabnovato/jobs-calc/issues/12) Decidir a publicação: o link do Render deu 404 em 06/11 (responsável).
 
 **Onde está a documentação**
 - [docs/MVP.md](docs/MVP.md): critérios e estado.
-- [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md): seção "Ciclo de 03/11/2026", com pesquisa, backlog e engenharia.
+- [docs/PLANO-DE-ACAO.md](docs/PLANO-DE-ACAO.md): seção "Ciclo de 07/11/2026", com pesquisa, backlog e engenharia.
 
 ## Problema e proposta
 
@@ -48,7 +47,7 @@ Quem trabalha como freelancer costuma cobrar "no chute". O JobsCalc parte da ren
 
 ## Funcionalidades
 
-- Perfil com renda mensal, horas/dia, dias/semana e semanas de férias → valor da hora, com as horas por mês usadas no cálculo.
+- Perfil com renda mensal, horas/dia, dias/semana, semanas de férias e percentual do tempo cobrado do cliente → valor da hora, com as horas por mês usadas no cálculo.
 - Jobs com orçamento (R$) e prazo (dias) calculados; status em andamento/encerrado.
 - Painel com contagens e horas livres no dia.
 - Números com vírgula (`2,5`, `1.234,56`), erros por campo e confirmação acessível ao excluir.
@@ -56,7 +55,7 @@ Quem trabalha como freelancer costuma cobrar "no chute". O JobsCalc parte da ren
 
 ## Stack
 
-Node 22 · Express 4 · EJS · SQLite (better-sqlite3) · helmet · node:test + supertest.
+Node 22 · Express 4 · EJS · SQLite (better-sqlite3) · helmet · node:test + supertest · Playwright + axe-core.
 
 ## Como rodar
 
@@ -64,7 +63,9 @@ Node 22 · Express 4 · EJS · SQLite (better-sqlite3) · helmet · node:test + 
 npm install
 cp .env.example .env    # opcional
 npm run dev             # http://localhost:3000
-npm test                # 13 testes
+npm test                # 15 testes de unidade
+npx playwright install chromium   # uma vez
+npm run test:e2e        # 16 testes no navegador (fluxo e axe)
 ```
 
 Para reaproveitar dados de uma cópia local antiga do banco, que não está mais no Git, rode uma vez com `DATABASE_FILE=./dbjobscalc.sqlite`: a migration converte os valores para centavos e mantém os jobs.

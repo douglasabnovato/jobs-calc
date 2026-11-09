@@ -52,3 +52,12 @@
 .delay-2 {
   animation-delay: 200ms;
 }
+/* Quem pede menos movimento no sistema vê o conteúdo já no lugar (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  .animate-up,
+  .animate-pop {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
