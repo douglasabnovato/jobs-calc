@@ -4,3 +4,5 @@ data/
 *.sqlite-shm
 .env
 dbjobscalc.sqlite
+test-results/
+playwright-report/
