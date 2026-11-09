@@ -102,6 +102,15 @@ test("POST de outra origem é recusado (CSRF)", async () => {
   await request(app).post("/job").set("Origin", "https://site-malicioso.com").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
 });
 
+test("POST do próprio site passa e a política de referência mantém a origem (#14)", async () => {
+  const { app } = build();
+  const page = await request(app).get("/job").expect(200);
+  assert.equal(page.headers["referrer-policy"], "same-origin");
+  await request(app).post("/job").set("Host", "localhost:3000").set("Origin", "http://localhost:3000").type("form")
+    .send({ name: "Site", "daily-hours": "1", "total-hours": "2" }).expect(303);
+  await request(app).post("/job").set("Origin", "null").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
+});
+
 test("autenticação básica protege as páginas, mas não o /health", async () => {
   const { app } = build({ user: "douglas", password: "s3nha" });
   await request(app).get("/").expect(401);

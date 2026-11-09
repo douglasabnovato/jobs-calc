@@ -25,6 +25,9 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
           "script-src": ["'self'"],
         },
       },
+      /* Com "no-referrer" (padrão do helmet) o Chrome manda "Origin: null" nos formulários
+         e o sameOrigin recusava todo POST feito pelo navegador (achado pelo teste de interface, #14) */
+      referrerPolicy: { policy: "same-origin" },
     })
   );
   app.get("/health", (req, res) => res.json({ status: "ok", jobs: repos.jobs.all().length }));
