@@ -2,7 +2,7 @@
 const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
-const { buildDashboard, monthlyHours, valueHourCents, budgetCents, formatBRL } = require("./domain/calculations");
+const { buildDashboard, monthlyHours, billableHours, valueHourCents, budgetCents, formatBRL } = require("./domain/calculations");
 const { validateJob, validateProfile } = require("./lib/validation");
 const { basicAuth, sameOrigin } = require("./middleware/security");
 
@@ -88,14 +88,14 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
 
   app.get("/profile", (req, res) => {
     const profile = repos.profile.get();
-    res.render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), form: null, errors: {}, flash: req.query.ok });
+    res.render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), hoursBillable: billableHours(profile), form: null, errors: {}, flash: req.query.ok });
   });
 
   app.post("/profile", (req, res) => {
     const { value, errors } = validateProfile(req.body);
     if (Object.keys(errors).length) {
       const profile = repos.profile.get();
-      return res.status(422).render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), form: req.body, errors, flash: null });
+      return res.status(422).render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), hoursBillable: billableHours(profile), form: req.body, errors, flash: null });
     }
     repos.profile.update(value);
     return res.redirect(303, "/profile?ok=salvo");

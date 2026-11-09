@@ -5,13 +5,13 @@
 </head>
 <body id="page-profile">
   <%- include('parts/page-header', { title: 'Meu perfil' }) %>
-  <% const f = form || { name: profile.name, avatar: profile.avatar, 'monthly-budget': (profile.monthlyBudgetCents / 100).toFixed(2).replace('.', ','), 'hours-per-day': String(profile.hoursPerDay).replace('.', ','), 'days-per-week': profile.daysPerWeek, 'vacation-per-year': profile.vacationPerYear }; %>
+  <% const f = form || { name: profile.name, avatar: profile.avatar, 'monthly-budget': (profile.monthlyBudgetCents / 100).toFixed(2).replace('.', ','), 'hours-per-day': String(profile.hoursPerDay).replace('.', ','), 'days-per-week': profile.daysPerWeek, 'vacation-per-year': profile.vacationPerYear, 'billable-percent': profile.billablePercent }; %>
   <div class="container animate-up delay-2">
     <aside class="card">
       <% if (profile.avatar) { %><img src="<%= profile.avatar %>" alt="" /><% } %>
       <h2><%= profile.name %></h2>
       <p>O valor da sua hora é <br /><strong><%= formatBRL(hourCents) %></strong></p>
-      <p class="hours-month">Base do cálculo: <%= hoursMonth.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) %> horas de trabalho por mês, já sem as férias.</p>
+      <p class="hours-month">Base do cálculo: <%= hoursMonth.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) %> horas de trabalho por mês, já sem as férias; <%= hoursBillable.toLocaleString('pt-BR', { maximumFractionDigits: 1 }) %> cobradas do cliente (<%= profile.billablePercent %>%).</p>
       <button class="button green" form="form-profile" type="submit">Salvar dados</button>
     </aside>
     <main>
@@ -37,6 +37,10 @@
             <%- include('parts/field', { name: 'days-per-week', label: 'Quantos dias <br/>quero trabalhar por semana?', type: 'number', value: f['days-per-week'], required: true, error: errors['days-per-week'] }) %>
             <%- include('parts/field', { name: 'vacation-per-year', label: 'Quantas semanas <br/>por ano quero de férias?', type: 'number', value: f['vacation-per-year'], required: true, error: errors['vacation-per-year'] }) %>
           </div>
+          <div class="input-group">
+            <%- include('parts/field', { name: 'billable-percent', label: 'Quanto do tempo <br/>é cobrado do cliente? (%)', type: 'number', value: f['billable-percent'], required: true, error: errors['billable-percent'] }) %>
+          </div>
+          <p class="hint">O resto vai para vendas, e-mails e administração. Guias de preço citam de 50% a 80% de tempo cobrado.</p>
         </fieldset>
       </form>
     </main>

@@ -8,9 +8,15 @@ function monthlyHours(profile) {
   return Math.max(0, profile.hoursPerDay * profile.daysPerWeek * weeksPerMonth);
 }
 
-/* Valor da hora em centavos: renda mensal ÷ horas trabalhadas no mês */
+/* Horas cobradas do cliente no mês: horas trabalhadas × percentual faturável (padrão 100%) */
+function billableHours(profile) {
+  const percent = profile.billablePercent ?? 100;
+  return (monthlyHours(profile) * percent) / 100;
+}
+
+/* Valor da hora em centavos: renda mensal ÷ horas faturáveis no mês */
 function valueHourCents(profile) {
-  const hours = monthlyHours(profile);
+  const hours = billableHours(profile);
   if (hours <= 0) return 0;
   return Math.round(profile.monthlyBudgetCents / hours);
 }
@@ -48,5 +54,5 @@ function formatBRL(cents) {
   return (cents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 }
 
-module.exports = { monthlyHours, valueHourCents, remainingDays, budgetCents, buildDashboard, formatBRL, WEEKS_PER_YEAR };
+module.exports = { monthlyHours, billableHours, valueHourCents, remainingDays, budgetCents, buildDashboard, formatBRL, WEEKS_PER_YEAR };
 /* Fim de calculations.js */

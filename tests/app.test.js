@@ -79,6 +79,24 @@ test("perfil recalcula valor da hora e recusa férias de 52 semanas", async () =
     .send({ name: "Ana", "monthly-budget": "8000", "hours-per-day": "8", "days-per-week": "5", "vacation-per-year": "52" }).expect(422);
 });
 
+test("percentual faturável (#13): 70% sobe o valor da hora e fora de 10 a 100 é recusado", async () => {
+  const { app, repos } = build();
+  const base = { name: "Ana", avatar: "", "monthly-budget": "7.000,00", "hours-per-day": "5", "days-per-week": "5", "vacation-per-year": "4" };
+  await request(app).post("/profile").type("form").send(base).expect(303);
+  assert.equal(repos.profile.get().billablePercent, 100);
+  assert.match((await request(app).get("/profile")).text, /R\$\s70,00/);
+  await request(app).post("/profile").type("form").send({ ...base, "billable-percent": "70" }).expect(303);
+  assert.equal(repos.profile.get().billablePercent, 70);
+  const page = await request(app).get("/profile").expect(200);
+  assert.match(page.text, /R\$\s100,00/);
+  assert.match(page.text, /70 cobradas do cliente \(70%\)/);
+  for (const bad of ["5", "101", "70,5", "abc"]) {
+    const res = await request(app).post("/profile").type("form").send({ ...base, "billable-percent": bad }).expect(422);
+    assert.match(res.text, /Informe de 10 a 100/);
+  }
+  assert.equal(calc.valueHourCents({ monthlyBudgetCents: 700000, hoursPerDay: 5, daysPerWeek: 5, vacationPerYear: 4, billablePercent: 70 }), 10000);
+});
+
 test("POST de outra origem é recusado (CSRF)", async () => {
   const { app } = build();
   await request(app).post("/job").set("Origin", "https://site-malicioso.com").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
@@ -102,6 +120,7 @@ test("migração converte o banco legado (valores em reais → centavos)", () =>
   legacy.close();
   const repos = createRepositories(openDatabase(file));
   assert.equal(repos.profile.get().monthlyBudgetCents, 920000);
+  assert.equal(repos.profile.get().billablePercent, 100);
   assert.equal(repos.jobs.find(6).name, "Dev Frontend Jr.");
 });
 /* Fim de app.test.js */
