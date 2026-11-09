@@ -18,8 +18,10 @@ async function semViolacoes(page, escopo) {
 for (const rota of ["/", "/job", "/profile", "/rota-que-nao-existe"]) {
   test(`axe sem violações em ${rota}`, async ({ page }, info) => {
     /* No painel, garante ao menos um card para o axe medir */
-    if (rota === "/") await page.request.post("/job", { form: { name: `Card do axe ${info.project.name}`, "daily-hours": "1", "total-hours": "2" } });
+    const card = `Card do axe ${info.project.name}`;
+    if (rota === "/") await page.request.post("/job", { form: { name: card, "daily-hours": "1", "total-hours": "2" } });
     await page.goto(rota);
+    if (rota === "/") await expect(page.locator("li.card", { hasText: card })).toHaveCount(1);
     await semViolacoes(page);
   });
 }

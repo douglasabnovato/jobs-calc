@@ -90,7 +90,9 @@ test("percentual faturável (#13): 70% sobe o valor da hora e fora de 10 a 100 �
   const page = await request(app).get("/profile").expect(200);
   assert.match(page.text, /R\$\s100,00/);
   assert.match(page.text, /70 cobradas do cliente \(70%\)/);
-  for (const bad of ["5", "101", "70,5", "abc"]) {
+  await request(app).post("/profile").type("form").send(base).expect(303);
+  assert.equal(repos.profile.get().billablePercent, 70, "POST sem o campo mantém o valor salvo");
+  for (const bad of ["5", "101", "70,5", "abc", ""]) {
     const res = await request(app).post("/profile").type("form").send({ ...base, "billable-percent": bad }).expect(422);
     assert.match(res.text, /Informe de 10 a 100/);
   }

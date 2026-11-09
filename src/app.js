@@ -100,6 +100,7 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
       const profile = repos.profile.get();
       return res.status(422).render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), hoursBillable: billableHours(profile), form: req.body, errors, flash: null });
     }
+    if (value.billablePercent === null) value.billablePercent = repos.profile.get().billablePercent;
     repos.profile.update(value);
     return res.redirect(303, "/profile?ok=salvo");
   });
