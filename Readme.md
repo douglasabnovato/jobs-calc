@@ -27,6 +27,7 @@ Projeto de estudo (N1): 8 de 10 critérios aplicáveis atendidos. **Finalizado**
 
 **O que queremos fazer**
 - [#19](https://github.com/douglasabnovato/jobs-calc/issues/19) Fundo inerte com a confirmação de exclusão aberta.
+- [#21](https://github.com/douglasabnovato/jobs-calc/issues/21) Recusar POST sem `Origin` e sem `Referer`.
 - [#15](https://github.com/douglasabnovato/jobs-calc/issues/15) `better-sqlite3` 12 para instalar no Node 24.
 - [#20](https://github.com/douglasabnovato/jobs-calc/issues/20) Mesclar o ciclo de 07/11 na `master` (responsável).
 - [#10](https://github.com/douglasabnovato/jobs-calc/issues/10) Proteger a `master` (responsável).

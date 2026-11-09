@@ -124,4 +124,4 @@ Timebox: 45 min (ciclo completo).
 4. Diálogo com h2; animações com `prefers-reduced-motion`.
 5. `docs/MVP.md` com uma tabela só, histórico e a correção de honestidade; README.
 
-**Vira issue.** #19 (fundo inerte) e #20 (responsável: mesclar o ciclo). Seguem abertas #15 (agente) e #10, #11, #12 (responsável).
+**Vira issue.** #19 (fundo inerte), #21 (POST sem `Origin` nem `Referer`) e #20 (responsável: mesclar o ciclo). Seguem abertas #15 (agente) e #10, #11, #12 (responsável).
