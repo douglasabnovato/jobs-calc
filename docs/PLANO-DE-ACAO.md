@@ -70,3 +70,58 @@ Timebox: 45 min (ciclo completo).
 **Este ciclo executa.** Itens 1 a 5 do backlog e a revisão do `MVP.md` pela régua N1 e pela decisão do critério 10.
 
 **Vira issue.** #13, #14, #15 (agente); #10, #11, #12 (responsável).
+
+## Ciclo de 07/11/2026
+
+> Executado em 09/11/2026. Branch `feature/2026-11-07` → `developer/sprint-2026-11-12` → `master` (o PR para a `master` fica com o responsável, #20). Nível: Estudo (N1), 10 critérios aplicáveis.
+
+### Produto
+
+**Problema e público.** Os mesmos: freelancers que cobram "no chute" calculam o valor da hora e o orçamento de cada job.
+
+**Hipótese e meta.** Calcular o valor de um job em menos de 1 minuto, entendendo a base do cálculo. Meta do ciclo: fluxo provado no navegador (#14) e valor da hora mais realista (#13).
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| O valor da hora sai da renda desejada dividida pelas horas que dá para cobrar, não pelas horas totais | Campo "Quanto do tempo é cobrado do cliente? (%)", padrão 100% para não mudar perfis existentes (#13) | [Upwork: como definir o preço do freela](https://www.upwork.com/resources/how-to-set-your-freelance-rate), [Harvest: calculadora de preço](https://www.getharvest.com/calculators/freelance-rate-calculator) |
+| A parte cobrada costuma ficar entre 50% e 80%; quem está começando, abaixo disso | Texto de ajuda no perfil com a faixa | [Beancount: hora efetiva](https://beancount.io/blog/2026/10/09/effective-hourly-rate-overhead-taxes-profit-billable-hour-guide), [Plutio: preço de freela](https://plutio.com/freelancer-magazine/how-to-price-freelance-work) |
+| O `webServer` do Playwright sobe o app e espera uma URL antes dos testes | `playwright.config.js` sobe `node src/server.js` com banco novo e espera `/health` | [Playwright: webServer](https://playwright.dev/docs/test-webserver) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | Formulários com 403 no navegador | Alto | Baixo | Este ciclo |
+| 2 | Fluxo e axe no navegador, no CI | Alto | Médio | Este ciclo (#14) |
+| 3 | Percentual de horas cobradas | Médio | Baixo | Este ciclo (#13) |
+| 4 | Título do diálogo e animações acessíveis | Médio | Baixo | Este ciclo |
+| 5 | Fundo inerte com o diálogo aberto | Médio | Baixo | #19 |
+| 6 | `better-sqlite3` 12 | Médio | Baixo | #15 |
+| 7 | Proteger a `master`, histórico do banco, publicação, merge do ciclo | Alto | Baixo | Responsável (#10, #11, #12, #20) |
+
+**Fora do escopo.** Faturamento, impostos e despesas no cálculo.
+
+### Engenharia
+
+**Arquitetura.** Migration 3 adiciona `profile.billable_percent` (10 a 100, padrão 100). `billableHours` em `src/domain/calculations.js` entra no valor da hora. `helmet` com `referrerPolicy: same-origin`. Testes de interface em `tests/e2e/` (Playwright 1.65), fora do `node --test`; projetos "claro" e "escuro", `reducedMotion: reduce`, rede externa bloqueada no teste.
+
+**Riscos.**
+- O `sameOrigin` aceita POST sem `Origin` nem `Referer` (como antes); navegadores atuais mandam `Origin` com a política nova.
+- Os dois projetos de cor dividem o banco do teste; os nomes levam o nome do projeto para não repetir.
+
+**Qualidade.** 15 testes de unidade e 16 de interface no CI; axe com todas as regras.
+
+**Definição de pronto.** `npm test` e `npm run test:e2e` verdes no CI; `docs/MVP.md` e README atualizados.
+
+### Plano de ação
+
+**Este ciclo executa.**
+1. `Referrer-Policy: same-origin`, com teste de POST do próprio site e de `Origin: null`.
+2. Percentual de horas cobradas no perfil (#13), com migration e testes.
+3. Playwright com perfil, job, painel, exclusão por teclado e Esc (#14); axe em 4 rotas e no diálogo.
+4. Diálogo com h2; animações com `prefers-reduced-motion`.
+5. `docs/MVP.md` com uma tabela só, histórico e a correção de honestidade; README.
+
+**Vira issue.** #19 (fundo inerte) e #20 (responsável: mesclar o ciclo). Seguem abertas #15 (agente) e #10, #11, #12 (responsável).
