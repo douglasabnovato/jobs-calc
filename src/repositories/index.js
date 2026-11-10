@@ -9,6 +9,7 @@ function toProfile(row) {
     daysPerWeek: row.days_per_week,
     hoursPerDay: row.hours_per_day,
     vacationPerYear: row.vacation_per_year,
+    billablePercent: row.billable_percent,
   };
 }
 
@@ -23,7 +24,8 @@ function createRepositories(db) {
     profile: db.prepare("SELECT * FROM profile WHERE id = 1"),
     updateProfile: db.prepare(
       `UPDATE profile SET name = @name, avatar = @avatar, monthly_budget_cents = @monthlyBudgetCents,
-       days_per_week = @daysPerWeek, hours_per_day = @hoursPerDay, vacation_per_year = @vacationPerYear WHERE id = 1`
+       days_per_week = @daysPerWeek, hours_per_day = @hoursPerDay, vacation_per_year = @vacationPerYear,
+       billable_percent = @billablePercent WHERE id = 1`
     ),
     jobs: db.prepare("SELECT * FROM jobs ORDER BY created_at DESC, id DESC"),
     job: db.prepare("SELECT * FROM jobs WHERE id = ?"),
