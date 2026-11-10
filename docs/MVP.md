@@ -2,14 +2,14 @@
 
 > Criado em 02/11/2026. Revisto em 09/11/2026 (ciclo de 07/11/2026). **Nível: Estudo (N1).** Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows com Node 24.22.1 (`better-sqlite3` 12 sem gravar no lock) e no CI com Node 22 no `ubuntu-latest`. Não houve teste com pessoas nem em aparelho real.
 
-**Resumo:** 8 de 10 aplicáveis atendidos
+**Resumo:** 9 de 10 aplicáveis atendidos
 **Finalizado:** sim
 
-Os dois critérios que faltam dependem do responsável e têm issue com o rótulo `depende-do-responsavel`: 9 (#11) e 10 (#10).
+O critério que falta depende do responsável e tem issue com o rótulo `depende-do-responsavel`: 9 (#11). O 10 passou a "Atende" em 10/11/2026, com a `master` protegida (#10).
 
 **Correção de honestidade (09/11/2026).** A tabela de 06/11 dizia que as telas funcionavam no navegador. Não funcionavam: todo formulário (perfil, job, exclusão) recebia 403 "Origem não permitida.", porque o `helmet` manda `Referrer-Policy: no-referrer` e, com isso, o Chrome envia `Origin: null`, que o `sameOrigin` recusava. Os testes com `supertest` não mandam `Origin` e não pegavam. O teste de interface achou; corrigido com `Referrer-Policy: same-origin` (commit `ecc9500`).
 
-## Critérios (07/11/2026)
+## Critérios (07/11/2026; critério 10 revisto em 10/11/2026)
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
@@ -22,7 +22,7 @@ Os dois critérios que faltam dependem do responsável e têm issue com o rótul
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). | Decisão 2 do processo |
 | 8 | Acessibilidade básica | axe e teclado | Atende: axe (todas as regras) sem violações em `/` com card, `/job`, `/profile`, 404 e no diálogo de exclusão, nos modos claro e escuro; corrigidos neste ciclo o título do diálogo (h3 → h2, `heading-order`) e as animações, que agora respeitam `prefers-reduced-motion`; exclusão só com teclado. O fundo do diálogo ainda não fica inerte (#19). | `tests/e2e/axe.spec.js`, CI do PR #18, 09/11/2026 |
 | 9 | Segurança e conformidade | Riscos decididos | Parcial: `npm audit` sem alertas; o banco com a renda mensal saiu do Git em 02/11, mas segue no histórico; decidir é do responsável. | #11 |
-| 10 | Entrega confiável | CI verde antes de entrar na principal | Parcial: CI (unidade e interface) em PR e push para `master` e `developer/**`; a `master` segue sem proteção. | #10 |
+| 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: ruleset `principal-protegida` ativo na `master` (exige PR, bloqueia force push e exclusão); o workflow `CI` (unidade e interface) roda em PR e push para `master` e `developer/**`. | `gh api repos/douglasabnovato/jobs-calc/rulesets`, 10/11/2026; #10 |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 15 testes de unidade e 16 de interface (8 por modo de cor). | CI do PR #18, 09/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run test:e2e`; correção do que a tabela de 06/11 dizia sobre o navegador. | README, 09/11/2026 |
 

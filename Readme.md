@@ -19,7 +19,7 @@
 
 ## Estado e próximos passos (ciclo de 07/11/2026)
 
-Projeto de estudo (N1): 8 de 10 critérios aplicáveis atendidos. **Finalizado**: os dois que faltam (#10 e #11) dependem do responsável.
+Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. **Finalizado**: o que falta (#11) depende do responsável. A `master` está protegida desde 10/11/2026 (#10).
 
 **O que foi feito**
 - 06/11 (PRs #16 e #17): horas por mês no perfil, foco visível em duas cores, teste da página 500, CI nos PRs para `developer/**`, código legado removido.
@@ -30,7 +30,6 @@ Projeto de estudo (N1): 8 de 10 critérios aplicáveis atendidos. **Finalizado**
 - [#21](https://github.com/douglasabnovato/jobs-calc/issues/21) Recusar POST sem `Origin` e sem `Referer`.
 - [#15](https://github.com/douglasabnovato/jobs-calc/issues/15) `better-sqlite3` 12 para instalar no Node 24.
 - [#20](https://github.com/douglasabnovato/jobs-calc/issues/20) Mesclar o ciclo de 07/11 na `master` (responsável).
-- [#10](https://github.com/douglasabnovato/jobs-calc/issues/10) Proteger a `master` (responsável).
 - [#11](https://github.com/douglasabnovato/jobs-calc/issues/11) Decidir o histórico com o banco da renda mensal (responsável).
 - [#12](https://github.com/douglasabnovato/jobs-calc/issues/12) Decidir a publicação: o link do Render deu 404 em 06/11 (responsável).
 
