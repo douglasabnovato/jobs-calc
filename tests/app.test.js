@@ -161,6 +161,12 @@ test("horas por mês: 6h/dia, 5 dias, 4 semanas de férias dá 120 h; perfil mos
   assert.match(res.text, /120 horas de trabalho por mês/);
 });
 
+test("painel sem jobs mostra o aviso de lista vazia", async () => {
+  const { app } = build();
+  const res = await request(app).get("/").expect(200);
+  assert.match(res.text, /Nenhum job cadastrado/);
+});
+
 test("falha inesperada responde 500 com a página de erro", async () => {
   const quebrado = { profile: { get: () => { throw new Error("banco fora"); } }, jobs: { all: () => [] } };
   const app = createApp({ repos: quebrado, now: () => NOW });
