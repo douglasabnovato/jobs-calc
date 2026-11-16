@@ -66,8 +66,14 @@ test("Esc fecha a confirmação e o foco volta ao botão de excluir", async ({ p
   const excluir = page.getByRole("button", { name: `Excluir ${nome}` });
   await excluir.click();
   await expect(page.getByRole("dialog")).toBeVisible();
+  /* Fundo inerte com a confirmação aberta (#19): cabeçalho e lista saem do teclado e do leitor de tela */
+  await expect(page.locator("body > header")).toHaveJSProperty("inert", true);
+  await expect(page.locator("body > .container")).toHaveJSProperty("inert", true);
+  await expect(page.locator(".modal-wrapper")).toHaveJSProperty("inert", false);
   await page.keyboard.press("Escape");
   await expect(page.getByRole("dialog")).toBeHidden();
+  await expect(page.locator("body > header")).toHaveJSProperty("inert", false);
+  await expect(page.locator("body > .container")).toHaveJSProperty("inert", false);
   await expect(excluir).toBeFocused();
   await expect(page.locator("li.card", { hasText: nome })).toHaveCount(1);
 });

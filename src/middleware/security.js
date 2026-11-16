@@ -22,11 +22,12 @@ function basicAuth(user, password) {
   };
 }
 
-/* Recusa POST cujo Origin/Referer aponte para outro host (OWASP CSRF: verificação de origem) */
+/* Recusa POST sem Origin/Referer ou com origem de outro host (OWASP CSRF: verificação de origem).
+   Sem os dois cabeçalhos não há prova de mesma origem, então o POST também é recusado (#21) */
 function sameOrigin(req, res, next) {
   if (req.method !== "POST") return next();
   const source = req.headers.origin || req.headers.referer;
-  if (!source) return next();
+  if (!source) return res.status(403).send("Origem não permitida.");
   try {
     if (new URL(source).host === req.headers.host) return next();
   } catch {

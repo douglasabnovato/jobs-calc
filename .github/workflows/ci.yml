@@ -26,6 +26,20 @@ jobs:
       - run: npm ci
       - run: npm test
 
+  node24:
+    # Mesmos testes de unidade no Node 24 (#15). Job separado, sem matriz:
+    # o ruleset exige os checks "raiz" e "interface" com esses nomes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - run: npm ci
+      - run: npm test
+
   interface:
     # Fluxo no navegador e axe (Playwright + Chromium), #14
     runs-on: ubuntu-latest

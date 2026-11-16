@@ -1,6 +1,6 @@
 # Deploy · JobsCalc
 
-Plano de ação para publicar a calculadora de freelas em hospedagem gratuita.
+Plano de ação para publicar a calculadora de freelas em hospedagem gratuita. Revisto em 16/11/2026: a `master` é protegida (só entra por PR com os checks `raiz` e `interface` verdes), e `https://jobs-calc.onrender.com` dá 404 com `x-render-routing: no-server`, ou seja, não há serviço nesse endereço. Publicar é decisão do responsável (#12).
 
 ## 1. Desafio
 
@@ -27,9 +27,9 @@ Colocar no ar, sem custo, uma aplicação Express + EJS + SQLite (better-sqlite3
 | `DATABASE_FILE=/tmp/jobs-calc.sqlite` | `render.yaml` | Caminho gravável e explícito para o SQLite no Render |
 | `APP_USER` e `APP_PASSWORD` com `sync: false` (já existiam) | `render.yaml` | São segredos: o Render pede os valores ao criar o serviço e eles não ficam no repositório |
 | `TRUST_PROXY=1` (já existia) | `render.yaml` | O app fica atrás do proxy do Render |
-| CI com Node 22 | `ci/github-actions-ci.yml` → mover para `.github/workflows/ci.yml` | Testes e `npm audit` a cada push, na mesma versão da produção |
+| CI com Node 22 e 24 | `.github/workflows/ci.yml` (jobs `raiz`, `node24` e `interface`) | Testes de unidade e no navegador a cada PR e push; o Node 22 é o mesmo do `NODE_VERSION` do `render.yaml`, e o 24 confere a próxima LTS |
 | `dbjobscalc.sqlite` no `.gitignore` | `.gitignore` | Depois do `git rm --cached`, o `git add -A` não volta a versionar o banco |
-| Seção "Em produção" | `Readme.md` | URL, hospedagem, senha obrigatória e aviso de dados temporários |
+| Seção "Publicação" | `Readme.md` | Hospedagem, senha obrigatória e aviso de dados temporários; o link só entra quando responder |
 
 ### Limitações do plano gratuito
 
@@ -42,7 +42,7 @@ Colocar no ar, sem custo, uma aplicação Express + EJS + SQLite (better-sqlite3
 - **`APP_USER` e `APP_PASSWORD` são obrigatórios em produção.** O código só pede senha quando os dois estão definidos; se ficarem vazios, qualquer pessoa com o link vê a sua renda mensal e cria, edita ou apaga jobs.
 - A senha trafega no cabeçalho do acesso básico do navegador: só é segura sob HTTPS (o Render já entrega `https://`). Use uma senha longa e exclusiva (gerenciador de senhas), nunca a mesma de outros serviços.
 - `/health` fica aberto sem senha (o Render precisa dele para o health check) e mostra apenas a quantidade de jobs.
-- POSTs de outra origem são recusados (verificação de `Origin`/`Referer`).
+- POSTs de outra origem, ou sem `Origin` e sem `Referer`, são recusados com 403 (verificação de origem).
 - Renda mensal é dado financeiro pessoal: não versione `dbjobscalc.sqlite` (objetivo do `git rm --cached`).
 
 ## 3. Solução (passo a passo)
@@ -51,32 +51,25 @@ Branch principal: **`master`**.
 
 ### Etapa 0 · Definir os segredos
 
-1. Escolher um usuário (ex.: `douglas`) e gerar uma senha forte com 20+ caracteres no gerenciador de senhas.
-2. Guardar os dois: o Render vai pedi-los na Etapa 3 como `APP_USER` e `APP_PASSWORD`.
+1. Escolher um nome de usuário e gerar uma senha forte com 20 ou mais caracteres, só letras e números, no gerenciador de senhas.
+2. Guardar os dois: o Render vai pedi-los na Etapa 3 como `APP_USER` e `APP_PASSWORD`. Não escreva a senha em issue, commit ou chat.
 
 ### Etapa 1 · Validar localmente (Git Bash)
 
-1. `cd /c/ambiente-projeto/ser-mvp/jobs-calc`
-2. Apagar o código antigo substituído pelas camadas novas (sai do Git e do disco):
-   Feito em 06/11/2026: `src/controllers`, `src/model`, `src/utils`, `src/db/config.js`, `src/db/init.js` e `src/routes.js` saíram do Git.
-3. Opcional, recomendado: parar de versionar o banco antigo (o arquivo continua no seu disco):
-   `git rm --cached dbjobscalc.sqlite`
-4. `npm install`
-5. `npm test` (esperado: 10 testes passando)
-6. Opcional, para migrar seus dados antigos: `DATABASE_FILE=./dbjobscalc.sqlite npm start` uma vez, depois `Ctrl+C`.
-7. Simular produção: `PORT=3000 NODE_ENV=production TRUST_PROXY=1 DATABASE_FILE=./data/producao-local.sqlite APP_USER=teste APP_PASSWORD=teste-local npm start` (no Render o banco fica em `/tmp`; aqui vai para `data/`, que o Git ignora).
+1. Clonar numa pasta de trabalho: `git clone -c core.longpaths=true https://github.com/douglasabnovato/jobs-calc` e `cd jobs-calc`.
+2. `npm ci` (Node 22 ou 24).
+3. `npm test` (esperado: 17 testes passando).
+4. `npx playwright install chromium` uma vez e `npm run test:e2e` (esperado: 8 testes passando).
+5. Opcional, para migrar dados antigos de uma cópia local: `DATABASE_FILE=./dbjobscalc.sqlite npm start` uma vez, depois `Ctrl+C`.
+6. Simular produção: `PORT=3000 NODE_ENV=production TRUST_PROXY=1 DATABASE_FILE=./data/producao-local.sqlite APP_USER=teste APP_PASSWORD=teste-local npm start` (no Render o banco fica em `/tmp`; aqui vai para `data/`, que o Git ignora).
    - `http://localhost:3000/health` responde `{"status":"ok","jobs":0}` sem pedir senha.
    - `http://localhost:3000/` pede usuário e senha (`teste` / `teste-local`) e depois mostra o painel.
    - `Ctrl+C` para sair.
 
-### Etapa 2 · Subir para o GitHub
+### Etapa 2 · Conferir a `master`
 
-1. CI: já ativo em `.github/workflows/ci.yml`. A cópia antiga em `ci/` saiu em 06/11/2026.
-2. `git status` (não podem aparecer `node_modules/`, `data/`, `.env` nem `dbjobscalc.sqlite` como arquivo novo)
-3. `git add -A`
-4. `git commit -m "feat(deploy): Node 22, SQLite em /tmp, senha obrigatória em produção, deploy automático no Render e CI"`
-5. `git push origin master`
-6. No GitHub, aba **Actions**: o CI precisa ficar verde.
+1. Mudanças entram por PR (`feature/AAAA-MM-DD` → `developer/sprint-<quinta>` → `master`). Push direto na `master` é recusado pelo ruleset `principal-protegida`.
+2. No GitHub, aba **Actions**: o último run do workflow `CI` na `master` precisa estar verde (`raiz`, `node24` e `interface`).
 
 ### Etapa 3 · Criar o serviço no Render
 
@@ -97,5 +90,7 @@ Branch principal: **`master`**.
 
 ### Etapa 5 · Fechar
 
-1. Se a URL real for diferente de `https://jobs-calc.onrender.com`, corrigir no `Readme.md`, commit e push (o Render publica sozinho).
-2. No GitHub, **About → Website**: colar a URL.
+1. O Render pode acrescentar um sufixo ao nome (ex.: `jobs-calc-xxxx.onrender.com`). Copiar a URL real do topo da página do serviço.
+2. Conferir: `curl -s -o /dev/null -w "%{http_code}" <URL>/health` devolve `200`.
+3. Comentar a URL e o código na issue #12. O agente põe o link no README por PR (a `master` não aceita push direto).
+4. No GitHub, **About → Website**: colar a URL.

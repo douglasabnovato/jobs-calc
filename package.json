@@ -10,7 +10,7 @@
     "test:e2e": "playwright test"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "repository": {
     "type": "git",
@@ -19,7 +19,7 @@
   "author": "@douglasabnovato",
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^11.10.0",
+    "better-sqlite3": "^12.11.1",
     "ejs": "^3.1.10",
     "express": "^4.21.2",
     "helmet": "^8.1.0"

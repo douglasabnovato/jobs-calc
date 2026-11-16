@@ -21,10 +21,9 @@ module.exports = defineConfig({
     /* Fora do CI dá para apontar um Chromium já instalado (PW_CHROMIUM) */
     launchOptions: process.env.PW_CHROMIUM ? { executablePath: process.env.PW_CHROMIUM } : {},
   },
-  projects: [
-    { name: "claro", use: { ...devices["Desktop Chrome"], colorScheme: "light" } },
-    { name: "escuro", use: { ...devices["Desktop Chrome"], colorScheme: "dark" } },
-  ],
+  /* O app não tem tema escuro próprio (nenhum prefers-color-scheme no CSS):
+     um projeto com colorScheme "dark" só repetia a tela clara e saiu em 16/11/2026 */
+  projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"], colorScheme: "light" } }],
   webServer: {
     command: "node src/server.js",
     url: `http://localhost:${PORT}/health`,
