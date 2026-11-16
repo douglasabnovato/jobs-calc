@@ -119,6 +119,7 @@ a {
 [aria-invalid="true"] { border: 2px solid #B71C1C !important; }
 .form-alert { background: #FDECEA; color: #8E1B1B; padding: .75rem 1rem; border-radius: .313rem; font-weight: 600; margin-bottom: 1rem; }
 .flash { background: #E8F5E9; color: #1B5E20; padding: .75rem 1rem; border-radius: .313rem; font-weight: 600; margin: 1rem 0; }
+.hint { margin-top: .5rem; font-size: .875rem; color: var(--color-card-content); }
 .empty { color: var(--color-card-content); text-align: center; padding: 3rem 0; }
 ul.cards { list-style: none; padding: 0; }
 .modal-wrapper[hidden] { display: none; }

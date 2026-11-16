@@ -32,6 +32,8 @@ function validateProfile(body = {}) {
     hoursPerDay: parseNumber(body["hours-per-day"]),
     daysPerWeek: parseNumber(body["days-per-week"]),
     vacationPerYear: parseNumber(body["vacation-per-year"]),
+    /* Campo novo (#13): ausente vira null e a rota mantém o valor salvo */
+    billablePercent: body["billable-percent"] === undefined ? null : parseNumber(body["billable-percent"]),
   };
   const errors = {};
   if (value.name.length < 2 || value.name.length > 60) errors.name = "Use de 2 a 60 caracteres.";
@@ -40,6 +42,7 @@ function validateProfile(body = {}) {
   if (!(value.hoursPerDay > 0 && value.hoursPerDay <= 24)) errors["hours-per-day"] = "Informe entre 1 e 24 horas.";
   if (!(Number.isInteger(value.daysPerWeek) && value.daysPerWeek >= 1 && value.daysPerWeek <= 7)) errors["days-per-week"] = "Informe de 1 a 7 dias.";
   if (!(Number.isInteger(value.vacationPerYear) && value.vacationPerYear >= 0 && value.vacationPerYear <= 51)) errors["vacation-per-year"] = "Informe de 0 a 51 semanas.";
+  if (value.billablePercent !== null && !(Number.isInteger(value.billablePercent) && value.billablePercent >= 10 && value.billablePercent <= 100)) errors["billable-percent"] = "Informe de 10 a 100 (%).";
   return { value, errors };
 }
 

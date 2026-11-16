@@ -2,7 +2,7 @@
 const path = require("path");
 const express = require("express");
 const helmet = require("helmet");
-const { buildDashboard, monthlyHours, valueHourCents, budgetCents, formatBRL } = require("./domain/calculations");
+const { buildDashboard, monthlyHours, billableHours, valueHourCents, budgetCents, formatBRL } = require("./domain/calculations");
 const { validateJob, validateProfile } = require("./lib/validation");
 const { basicAuth, sameOrigin } = require("./middleware/security");
 
@@ -25,6 +25,9 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
           "script-src": ["'self'"],
         },
       },
+      /* Com "no-referrer" (padrão do helmet) o Chrome manda "Origin: null" nos formulários
+         e o sameOrigin recusava todo POST feito pelo navegador (achado pelo teste de interface, #14) */
+      referrerPolicy: { policy: "same-origin" },
     })
   );
   app.get("/health", (req, res) => res.json({ status: "ok", jobs: repos.jobs.all().length }));
@@ -88,15 +91,16 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
 
   app.get("/profile", (req, res) => {
     const profile = repos.profile.get();
-    res.render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), form: null, errors: {}, flash: req.query.ok });
+    res.render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), hoursBillable: billableHours(profile), form: null, errors: {}, flash: req.query.ok });
   });
 
   app.post("/profile", (req, res) => {
     const { value, errors } = validateProfile(req.body);
     if (Object.keys(errors).length) {
       const profile = repos.profile.get();
-      return res.status(422).render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), form: req.body, errors, flash: null });
+      return res.status(422).render("profile", { profile, hourCents: valueHourCents(profile), hoursMonth: monthlyHours(profile), hoursBillable: billableHours(profile), form: req.body, errors, flash: null });
     }
+    if (value.billablePercent === null) value.billablePercent = repos.profile.get().billablePercent;
     repos.profile.update(value);
     return res.redirect(303, "/profile?ok=salvo");
   });
