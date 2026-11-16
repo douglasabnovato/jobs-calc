@@ -17,6 +17,11 @@ function build(auth) {
   return { repos, app: createApp({ repos, now: () => NOW, auth }) };
 }
 
+/* POST como o navegador faz no próprio site: Host e Origin iguais (#21) */
+function post(app, url) {
+  return request(app).post(url).set("Host", "localhost:3000").set("Origin", "http://localhost:3000");
+}
+
 test("valor da hora: R$ 5.000, 6h/dia, 5 dias, 4 semanas de férias", () => {
   const cents = calc.valueHourCents({ monthlyBudgetCents: 500000, hoursPerDay: 6, daysPerWeek: 5, vacationPerYear: 4 });
   assert.equal(cents, 4167);
@@ -41,7 +46,7 @@ test("números aceitam vírgula decimal pt-BR", () => {
 
 test("criar job com aspas no nome não quebra nem injeta SQL", async () => {
   const { app, repos } = build();
-  await request(app).post("/job").type("form").send({ name: 'Site "X"); DROP TABLE jobs;--', "daily-hours": "2,5", "total-hours": "10" }).expect(303);
+  await post(app, "/job").type("form").send({ name: 'Site "X"); DROP TABLE jobs;--', "daily-hours": "2,5", "total-hours": "10" }).expect(303);
   const jobs = repos.jobs.all();
   assert.equal(jobs.length, 1);
   assert.equal(jobs[0].dailyHours, 2.5);
@@ -52,7 +57,7 @@ test("criar job com aspas no nome não quebra nem injeta SQL", async () => {
 
 test("job inválido responde 422 com erro por campo", async () => {
   const { app, repos } = build();
-  const res = await request(app).post("/job").type("form").send({ name: "X", "daily-hours": "0", "total-hours": "" }).expect(422);
+  const res = await post(app, "/job").type("form").send({ name: "X", "daily-hours": "0", "total-hours": "" }).expect(422);
   assert.equal((res.text.match(/aria-invalid="true"/g) || []).length, 3);
   assert.equal(repos.jobs.all().length, 0);
 });
@@ -60,40 +65,40 @@ test("job inválido responde 422 com erro por campo", async () => {
 test("editar, 404 para job inexistente e excluir", async () => {
   const { app, repos } = build();
   const id = repos.jobs.create({ name: "Landing", dailyHours: 2, totalHours: 8, createdAt: NOW });
-  await request(app).post(`/job/${id}`).type("form").send({ name: "Landing v2", "daily-hours": "4", "total-hours": "8" }).expect(303);
+  await post(app, `/job/${id}`).type("form").send({ name: "Landing v2", "daily-hours": "4", "total-hours": "8" }).expect(303);
   assert.equal(repos.jobs.find(id).name, "Landing v2");
   await request(app).get("/job/999").expect(404);
   await request(app).get("/job/abc").expect(404);
-  await request(app).post(`/job/delete/${id}`).expect(303);
+  await post(app, `/job/delete/${id}`).expect(303);
   assert.equal(repos.jobs.all().length, 0);
 });
 
 test("perfil recalcula valor da hora e recusa férias de 52 semanas", async () => {
   const { app, repos } = build();
-  await request(app).post("/profile").type("form")
+  await post(app, "/profile").type("form")
     .send({ name: "Ana", avatar: "", "monthly-budget": "8.000,00", "hours-per-day": "8", "days-per-week": "5", "vacation-per-year": "4" }).expect(303);
   assert.equal(repos.profile.get().monthlyBudgetCents, 800000);
   const page = await request(app).get("/profile").expect(200);
   assert.match(page.text, /R\$\s50,00/);
-  await request(app).post("/profile").type("form")
+  await post(app, "/profile").type("form")
     .send({ name: "Ana", "monthly-budget": "8000", "hours-per-day": "8", "days-per-week": "5", "vacation-per-year": "52" }).expect(422);
 });
 
 test("percentual faturável (#13): 70% sobe o valor da hora e fora de 10 a 100 é recusado", async () => {
   const { app, repos } = build();
   const base = { name: "Ana", avatar: "", "monthly-budget": "7.000,00", "hours-per-day": "5", "days-per-week": "5", "vacation-per-year": "4" };
-  await request(app).post("/profile").type("form").send(base).expect(303);
+  await post(app, "/profile").type("form").send(base).expect(303);
   assert.equal(repos.profile.get().billablePercent, 100);
   assert.match((await request(app).get("/profile")).text, /R\$\s70,00/);
-  await request(app).post("/profile").type("form").send({ ...base, "billable-percent": "70" }).expect(303);
+  await post(app, "/profile").type("form").send({ ...base, "billable-percent": "70" }).expect(303);
   assert.equal(repos.profile.get().billablePercent, 70);
   const page = await request(app).get("/profile").expect(200);
   assert.match(page.text, /R\$\s100,00/);
   assert.match(page.text, /70 cobradas do cliente \(70%\)/);
-  await request(app).post("/profile").type("form").send(base).expect(303);
+  await post(app, "/profile").type("form").send(base).expect(303);
   assert.equal(repos.profile.get().billablePercent, 70, "POST sem o campo mantém o valor salvo");
   for (const bad of ["5", "101", "70,5", "abc", ""]) {
-    const res = await request(app).post("/profile").type("form").send({ ...base, "billable-percent": bad }).expect(422);
+    const res = await post(app, "/profile").type("form").send({ ...base, "billable-percent": bad }).expect(422);
     assert.match(res.text, /Informe de 10 a 100/);
   }
   assert.equal(calc.valueHourCents({ monthlyBudgetCents: 700000, hoursPerDay: 5, daysPerWeek: 5, vacationPerYear: 4, billablePercent: 70 }), 10000);
@@ -101,16 +106,27 @@ test("percentual faturável (#13): 70% sobe o valor da hora e fora de 10 a 100 �
 
 test("POST de outra origem é recusado (CSRF)", async () => {
   const { app } = build();
-  await request(app).post("/job").set("Origin", "https://site-malicioso.com").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
+  await post(app, "/job").set("Origin", "https://site-malicioso.com").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
 });
 
 test("POST do próprio site passa e a política de referência mantém a origem (#14)", async () => {
   const { app } = build();
   const page = await request(app).get("/job").expect(200);
   assert.equal(page.headers["referrer-policy"], "same-origin");
-  await request(app).post("/job").set("Host", "localhost:3000").set("Origin", "http://localhost:3000").type("form")
+  await post(app, "/job").set("Host", "localhost:3000").set("Origin", "http://localhost:3000").type("form")
     .send({ name: "Site", "daily-hours": "1", "total-hours": "2" }).expect(303);
-  await request(app).post("/job").set("Origin", "null").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
+  await post(app, "/job").set("Origin", "null").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
+});
+
+test("POST sem Origin e sem Referer é recusado; só Referer do próprio site passa (#21)", async () => {
+  const { app, repos } = build();
+  const body = { name: "Sem origem", "daily-hours": "1", "total-hours": "1" };
+  await request(app).post("/job").type("form").send(body).expect(403);
+  await request(app).post("/profile").type("form").send({}).expect(403);
+  assert.equal(repos.jobs.all().length, 0);
+  await request(app).post("/job").set("Host", "localhost:3000").set("Referer", "http://localhost:3000/job").type("form").send(body).expect(303);
+  await request(app).post("/job").set("Host", "localhost:3000").set("Referer", "http://localhost:3000.site-malicioso.com/").type("form").send(body).expect(403);
+  assert.equal(repos.jobs.all().length, 1);
 });
 
 test("autenticação básica protege as páginas, mas não o /health", async () => {
