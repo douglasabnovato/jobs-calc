@@ -19,7 +19,7 @@
 
 ## Estado e próximos passos (ciclo de 16/11/2026)
 
-Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. **Finalizado**: o que falta (#11) depende do responsável. A `master` está protegida, com os checks `raiz` e `interface` obrigatórios. O projeto não está publicado (o endereço do Render dá 404, #12): rode localmente.
+Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. **Finalizado**: o que falta (#11, o banco com a renda mensal no histórico) depende do responsável. Os alertas do Dependabot estão ligados desde 16/11/2026, com 0 alertas abertos. A `master` está protegida, com os checks `raiz` e `interface` obrigatórios. O projeto não está publicado (o endereço do Render dá 404, #12): rode localmente.
 
 **O que foi feito**
 - 06/11 (PRs #16 e #17): horas por mês no perfil, foco visível em duas cores, teste da página 500, CI nos PRs para `developer/**`, código legado removido.
@@ -32,7 +32,7 @@ Projeto de estudo (N1): 9 de 10 critérios aplicáveis atendidos. **Finalizado**
 - [#28](https://github.com/douglasabnovato/jobs-calc/issues/28) Atualizar o Express para a versão 5.
 - [#29](https://github.com/douglasabnovato/jobs-calc/issues/29) Atualizar o EJS para a 7 e o `better-sqlite3` para a 13.
 - [#25](https://github.com/douglasabnovato/jobs-calc/issues/25) Mesclar o ciclo de 16/11 na `master` (responsável).
-- [#26](https://github.com/douglasabnovato/jobs-calc/issues/26) Ligar os alertas do Dependabot (responsável).
+- [#26](https://github.com/douglasabnovato/jobs-calc/issues/26) Ligar os alertas do Dependabot (ligados pelo responsável em 16/11/2026, com 0 alertas abertos; a issue fica para ele fechar).
 - [#11](https://github.com/douglasabnovato/jobs-calc/issues/11) Decidir o histórico com o banco da renda mensal (responsável).
 - [#12](https://github.com/douglasabnovato/jobs-calc/issues/12) Decidir a publicação no Render: o endereço deu 404 em 16/11 (responsável).
 
