@@ -1,14 +1,37 @@
-/* Modal de confirmação acessível: foco no botão Cancelar, Esc fecha e o foco volta para quem abriu */
+/* Modal de confirmação acessível: foco no botão Cancelar, Esc fecha, o fundo fica inerte (#19)
+   e o foco volta para quem abriu */
 export default function Modal({ animateClasses = [] }) {
   const wrapper = document.querySelector(".modal-wrapper");
   const element = document.querySelector(".modal");
   const cancelButton = element.querySelector("[data-cancel]");
   let opener = null;
+  let inertes = [];
+
+  /* Põe "inert" nos irmãos do modal em cada nível até o body, guardando só os que mudaram */
+  function inertBackground() {
+    inertes = [];
+    for (let node = wrapper; node && node !== document.body; node = node.parentElement) {
+      for (const sibling of node.parentElement.children) {
+        if (sibling === node || sibling.inert || sibling.tagName === "SCRIPT") continue;
+        sibling.inert = true;
+        inertes.push(sibling);
+      }
+    }
+  }
+
+  /* Devolve o fundo ao teclado e ao leitor de tela */
+  function restoreBackground() {
+    inertes.forEach((el) => {
+      el.inert = false;
+    });
+    inertes = [];
+  }
 
   /* Abre o modal guardando o elemento que o acionou */
   function open(event) {
     opener = event && event.currentTarget ? event.currentTarget : document.activeElement;
     wrapper.hidden = false;
+    inertBackground();
     wrapper.classList.add("on");
     element.classList.add(...animateClasses);
     document.addEventListener("keydown", onKey);
@@ -21,6 +44,7 @@ export default function Modal({ animateClasses = [] }) {
     wrapper.classList.remove("on");
     element.classList.remove(...animateClasses);
     wrapper.hidden = true;
+    restoreBackground();
     if (opener) opener.focus();
   }
 
