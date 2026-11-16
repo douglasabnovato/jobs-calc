@@ -33,7 +33,7 @@ for (const rota of ["/", "/job", "/profile", "/rota-que-nao-existe"]) {
 }
 
 
-/* Com a confirmação aberta, o fundo fica inerte (#19): o axe olha a página inteira */
+/* Com a confirmação aberta, o fundo fica inerte (#19): o axe roda sem escopo e trata o fundo inerte como oculto */
 test("axe sem violações na confirmação de exclusão aberta", async ({ page, baseURL }, info) => {
   const nome = `Job do axe ${info.project.name}`;
   await criarJob(page, baseURL, nome);

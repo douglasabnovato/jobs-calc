@@ -113,7 +113,7 @@ test("POST do próprio site passa e a política de referência mantém a origem 
   const { app } = build();
   const page = await request(app).get("/job").expect(200);
   assert.equal(page.headers["referrer-policy"], "same-origin");
-  await post(app, "/job").set("Host", "localhost:3000").set("Origin", "http://localhost:3000").type("form")
+  await post(app, "/job").type("form")
     .send({ name: "Site", "daily-hours": "1", "total-hours": "2" }).expect(303);
   await post(app, "/job").set("Origin", "null").type("form").send({ name: "abc", "daily-hours": "1", "total-hours": "1" }).expect(403);
 });
@@ -125,7 +125,10 @@ test("POST sem Origin e sem Referer é recusado; só Referer do próprio site pa
   await request(app).post("/profile").type("form").send({}).expect(403);
   assert.equal(repos.jobs.all().length, 0);
   await request(app).post("/job").set("Host", "localhost:3000").set("Referer", "http://localhost:3000/job").type("form").send(body).expect(303);
-  await request(app).post("/job").set("Host", "localhost:3000").set("Referer", "http://localhost:3000.site-malicioso.com/").type("form").send(body).expect(403);
+  /* Referer válido de outro host, inclusive com o nome do site no usuário ou na busca: compara o host inteiro */
+  for (const referer of ["http://site-malicioso.com/job", "http://localhost:3000@site-malicioso.com/", "http://site-malicioso.com/?volta=localhost:3000"]) {
+    await request(app).post("/job").set("Host", "localhost:3000").set("Referer", referer).type("form").send(body).expect(403);
+  }
   assert.equal(repos.jobs.all().length, 1);
 });
 

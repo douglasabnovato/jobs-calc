@@ -27,7 +27,7 @@ Colocar no ar, sem custo, uma aplicação Express + EJS + SQLite (better-sqlite3
 | `DATABASE_FILE=/tmp/jobs-calc.sqlite` | `render.yaml` | Caminho gravável e explícito para o SQLite no Render |
 | `APP_USER` e `APP_PASSWORD` com `sync: false` (já existiam) | `render.yaml` | São segredos: o Render pede os valores ao criar o serviço e eles não ficam no repositório |
 | `TRUST_PROXY=1` (já existia) | `render.yaml` | O app fica atrás do proxy do Render |
-| CI com Node 22 e 24 | `.github/workflows/ci.yml` (jobs `raiz`, `node24` e `interface`) | Testes de unidade e no navegador a cada PR e push, na mesma versão da produção |
+| CI com Node 22 e 24 | `.github/workflows/ci.yml` (jobs `raiz`, `node24` e `interface`) | Testes de unidade e no navegador a cada PR e push; o Node 22 é o mesmo do `NODE_VERSION` do `render.yaml`, e o 24 confere a próxima LTS |
 | `dbjobscalc.sqlite` no `.gitignore` | `.gitignore` | Depois do `git rm --cached`, o `git add -A` não volta a versionar o banco |
 | Seção "Publicação" | `Readme.md` | Hospedagem, senha obrigatória e aviso de dados temporários; o link só entra quando responder |
 
