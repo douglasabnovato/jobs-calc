@@ -125,3 +125,57 @@ Timebox: 45 min (ciclo completo).
 5. `docs/MVP.md` com uma tabela só, histórico e a correção de honestidade; README.
 
 **Vira issue.** #19 (fundo inerte), #21 (POST sem `Origin` nem `Referer`) e #20 (responsável: mesclar o ciclo). Seguem abertas #15 (agente) e #10, #11, #12 (responsável).
+
+## Ciclo de 16/11/2026
+
+> Executado em 16/11/2026. Branch `feature/2026-11-16` → `developer/sprint-2026-11-19` → `master` (o PR para a `master` fica com o responsável). O ciclo de 07/11 entrou na `master` pelo PR #22 em 16/11/2026. Nível: Estudo (N1), 10 critérios aplicáveis.
+
+### Produto
+
+**Problema e público.** Os mesmos: freelancers que cobram "no chute" calculam o valor da hora e o orçamento de cada job.
+
+**Hipótese e meta.** Acreditamos que, partindo do perfil, uma pessoa calcula o valor de um job em menos de 1 minuto. Saberemos quando o teste no navegador fizer o percurso perfil → job → painel sem ajuda e o CI ficar verde. Meta deste ciclo: fechar as brechas que sobraram da revisão de 09/11 (#19, #21) e instalar no Node 24 (#15).
+
+**O que a pesquisa trouxe.**
+
+| Ideia | O que levamos para o projeto | Fonte |
+|---|---|---|
+| Sem `Origin` e sem `Referer`, ou com `Origin: null`, não há prova de mesma origem: recusar o POST se não houver outra defesa | `sameOrigin` passa a recusar POST sem os dois cabeçalhos (#21) | [OWASP: CSRF Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html) |
+| `inert` tira o elemento e os filhos do foco, do clique e da árvore de acessibilidade | Com a confirmação aberta, o resto da página recebe `inert` (#19) | [MDN: atributo inert](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Global_attributes/inert), [WAI-ARIA APG: diálogo modal](https://www.w3.org/WAI/ARIA/apg/patterns/dialog-modal/) |
+| O Node 20 está fora de suporte; 22 e 24 seguem como LTS | `better-sqlite3` 12 (aceita Node 20 a 26), `engines` em `>=22` e um job de testes em Node 24 (#15) | [Node.js: versões](https://nodejs.org/en/about/previous-releases) |
+
+**Backlog priorizado (impacto × esforço).**
+
+| Prioridade | Item | Impacto | Esforço | Destino |
+|---|---|---|---|---|
+| 1 | Documentação diz "claro e escuro", mas o CSS não tem tema escuro | Alto (honestidade) | Baixo | Este ciclo |
+| 2 | POST sem `Origin` e sem `Referer` | Médio | Baixo | Este ciclo (#21) |
+| 3 | Fundo inerte com o diálogo aberto | Médio | Baixo | Este ciclo (#19) |
+| 4 | `better-sqlite3` 12 e Node 24 no CI | Médio | Baixo | Este ciclo (#15) |
+| 5 | `docs/DEPLOY.md` com push direto na `master` (hoje bloqueado pelo ruleset) | Médio | Baixo | Este ciclo |
+| 6 | Histórico do banco e publicação | Alto | Baixo | Responsável (#11, #12) |
+
+**Fora do escopo.** Faturamento, impostos, despesas, tema escuro novo, troca do SQLite.
+
+### Engenharia
+
+**Arquitetura.** Sem mudança de camadas. `src/middleware/security.js` recusa POST sem origem. `public/scripts/modal.js` põe `inert` nos irmãos do `.modal-wrapper` ao abrir e tira ao fechar. `package.json` com `better-sqlite3` 12. O CI ganha o job `node24` ao lado de `raiz` e `interface`; os dois nomes exigidos pelo ruleset não mudam (matriz mudaria o nome do check e travaria o merge).
+
+**Riscos.**
+- Cliente que não manda `Origin` nem `Referer` (por exemplo, `curl` sem cabeçalho) passa a receber 403. O app só tem formulários do próprio site; o README explica a regra.
+- `better-sqlite3` 12 é versão maior: os testes de unidade e de interface cobrem banco, migrations e o banco legado.
+
+**Qualidade.** Testes de unidade no CI em Node 22 e 24; Playwright com axe na página inteira com o diálogo aberto. O app não tem tema escuro próprio: o projeto "escuro" do Playwright repetia a tela clara e sai.
+
+**Definição de pronto.** `npm test` e `npm run test:e2e` verdes no CI; `docs/MVP.md`, README e `docs/DEPLOY.md` atualizados; revisão independente feita antes do merge.
+
+### Plano de ação
+
+**Este ciclo executa.**
+1. `better-sqlite3` 12, `engines` `>=22` e job `node24` (#15); `npm audit --omit=dev`.
+2. Honestidade: tirar "claro e escuro" do `MVP.md` e do Playwright; evidência com número do run.
+3. `sameOrigin` recusa POST sem origem, com testes (#21).
+4. Fundo inerte com a confirmação aberta e axe na página inteira (#19).
+5. `docs/DEPLOY.md` no fluxo atual (PR, sem push na `master`).
+
+**Vira issue.** Agente: #27 (tela de edição no navegador), #28 (Express 5), #29 (EJS 7 e `better-sqlite3` 13), #30 (`<dialog>` nativo). Responsável: #25 (mesclar o ciclo na `master`), #26 (ligar o Dependabot), e seguem #11 e #12. A #15 pedia matriz no CI; virou o job `node24` separado, porque o ruleset exige os checks `raiz` e `interface` pelo nome.

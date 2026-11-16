@@ -7,6 +7,12 @@ test.beforeEach(async ({ context }) => {
   await context.route(/^https?:\/\/(?!localhost[:/])/, (route) => route.abort());
 });
 
+/* Cria um job pela rota, como o formulário do próprio site: o sameOrigin recusa POST sem Origin (#21) */
+async function criarJob(page, baseURL, nome) {
+  const res = await page.request.post("/job", { headers: { Origin: baseURL }, form: { name: nome, "daily-hours": "1", "total-hours": "2" }, maxRedirects: 0 });
+  expect(res.status()).toBe(303);
+}
+
 /* Falha com a lista de violações de qualquer gravidade */
 async function semViolacoes(page, escopo) {
   const builder = new AxeBuilder({ page });
@@ -16,10 +22,10 @@ async function semViolacoes(page, escopo) {
 }
 
 for (const rota of ["/", "/job", "/profile", "/rota-que-nao-existe"]) {
-  test(`axe sem violações em ${rota}`, async ({ page }, info) => {
+  test(`axe sem violações em ${rota}`, async ({ page, baseURL }, info) => {
     /* No painel, garante ao menos um card para o axe medir */
     const card = `Card do axe ${info.project.name}`;
-    if (rota === "/") await page.request.post("/job", { form: { name: card, "daily-hours": "1", "total-hours": "2" } });
+    if (rota === "/") await criarJob(page, baseURL, card);
     await page.goto(rota);
     if (rota === "/") await expect(page.locator("li.card", { hasText: card })).toHaveCount(1);
     await semViolacoes(page);
@@ -27,13 +33,13 @@ for (const rota of ["/", "/job", "/profile", "/rota-que-nao-existe"]) {
 }
 
 
-/* Com a confirmação aberta, o fundo fica sob o véu escuro; o axe olha o diálogo */
-test("axe sem violações na confirmação de exclusão aberta", async ({ page }, info) => {
+/* Com a confirmação aberta, o fundo fica inerte (#19): o axe roda sem escopo e trata o fundo inerte como oculto */
+test("axe sem violações na confirmação de exclusão aberta", async ({ page, baseURL }, info) => {
   const nome = `Job do axe ${info.project.name}`;
-  await page.request.post("/job", { form: { name: nome, "daily-hours": "1", "total-hours": "2" } });
+  await criarJob(page, baseURL, nome);
   await page.goto("/");
   await page.locator("li.card", { hasText: nome }).locator("button.delete").click();
   await expect(page.getByRole("dialog")).toBeVisible();
-  await semViolacoes(page, ".modal");
+  await semViolacoes(page);
 });
 /* Fim de axe.spec.js */
