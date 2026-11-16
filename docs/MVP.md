@@ -1,11 +1,11 @@
 # MVP — jobs-calc
 
-> Criado em 02/11/2026. Revisto em 16/11/2026 (ciclo de 16/11/2026). **Nível: Estudo (N1).** Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows com Node 24.22.1 e no CI com Node 22 e Node 24 no `ubuntu-latest`. Não houve teste com pessoas nem em aparelho real.
+> Criado em 02/11/2026. Revisto em 16/11/2026 (ciclo de 16/11/2026; critério 9 revisto às 12h10, com os alertas do Dependabot ligados). **Nível: Estudo (N1).** Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows com Node 24.22.1 e no CI com Node 22 e Node 24 no `ubuntu-latest`. Não houve teste com pessoas nem em aparelho real.
 
 **Resumo:** 9 de 10 aplicáveis atendidos
 **Finalizado:** sim
 
-O critério que falta depende do responsável e tem issue com o rótulo `depende-do-responsavel`: 9 (#11).
+O critério que falta depende do responsável e tem issue com o rótulo `depende-do-responsavel`: 9 (#11, o banco com a renda mensal no histórico do Git). Os alertas do Dependabot foram ligados em 16/11/2026 e não seguram mais o critério.
 
 **Correção de honestidade (16/11/2026).** A tabela de 07/11 dizia "axe nos modos claro e escuro". O CSS não tem `prefers-color-scheme` nem outro tema escuro: o projeto "escuro" do Playwright repetia a tela clara. O app não tem tema escuro próprio; o projeto saiu e a contagem de testes de interface caiu de 16 para 8, sem perder cobertura.
 
@@ -21,7 +21,7 @@ O critério que falta depende do responsável e tem issue com o rótulo `depende
 | 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: 404, 422 com erro por campo, 500, POST de outra origem e POST sem `Origin` nem `Referer` (403) com teste; percentual fora de 10 a 100 dá erro no campo; painel vazio mostra "Nenhum job cadastrado"; no navegador, job vazio mostra "Revise os campos destacados". | `npm test`: 17 de 17 nos jobs `raiz` (Node 22) e `node24` do run 43805159349, 16/11/2026 |
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). | Decisão 2 do processo |
 | 8 | Acessibilidade básica | axe e teclado | Atende: axe (todas as regras) sem violações em `/` com card, `/job`, `/profile`, 404 e na página com a confirmação de exclusão aberta e o fundo inerte (o axe trata o conteúdo `inert` como oculto), em largura de desktop; com a confirmação aberta, o fundo fica `inert` (#19); exclusão só com teclado e Esc devolve o foco. O app não tem tema escuro próprio: o axe roda só no tema claro, que é o único. | `tests/e2e/axe.spec.js` e `tests/e2e/fluxo.spec.js`, job `interface` do run 43805159349, 16/11/2026 |
-| 9 | Segurança e conformidade | Riscos decididos | Parcial: `npm audit --omit=dev` com 0 vulnerabilidades (16/11/2026; o Dependabot está desligado, a API devolve 403); nenhum segredo no código; o banco com a renda mensal saiu do Git em 02/11, mas segue no histórico; decidir é do responsável. | #11 |
+| 9 | Segurança e conformidade | Riscos decididos | Parcial: o banco com a renda mensal saiu do Git em 02/11, mas segue no histórico; decidir é do responsável (#11). O resto atende: `gh api "repos/douglasabnovato/jobs-calc/dependabot/alerts?state=open&per_page=100"` com 0 alertas abertos (16/11/2026 11h57, alertas ligados pelo responsável nesse dia); `npm audit --omit=dev` com 0 vulnerabilidades depois do `npm ci` (16/11/2026 12h10); nenhum segredo no código. | #11; comandos e horas ao lado |
 | 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: ruleset `principal-protegida` ativo na `master`, com PR obrigatório, bloqueio de force push e exclusão e os checks `raiz` e `interface` obrigatórios; o workflow `CI` roda em PR e push para `master` e `developer/**`. | `gh api repos/douglasabnovato/jobs-calc/rulesets/26932542`, 16/11/2026: `required_status_checks` com `interface` e `raiz` |
 | 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 17 testes de unidade (Node 22 e 24) e 8 de interface, sem testes pulados. | Run 43805159349: `# skipped 0` no `raiz`, `skipped 0` no `node24`, `8 passed` no `interface`, 16/11/2026 |
 | 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json` (`dev`, `test`, `test:e2e`); sem link publicado, porque `https://jobs-calc.onrender.com` deu 404 em 16/11/2026; correção do tema escuro acima. | README, 16/11/2026 |
@@ -39,6 +39,8 @@ Faturamento, contas de clientes, impostos e despesas no cálculo, tema escuro.
 POST sem `Origin` e sem `Referer` passa a receber 403 (#21); fundo inerte com a confirmação de exclusão aberta (#19); `better-sqlite3` 12 e testes também no Node 24 (#15); o projeto "escuro" do Playwright saiu; `docs/DEPLOY.md` no fluxo atual. Detalhes em [PLANO-DE-ACAO.md](PLANO-DE-ACAO.md), seção "Ciclo de 16/11/2026".
 
 ## Histórico
+
+- 16/11/2026, 12h10: critério 9 segue "Parcial" só pelo banco no histórico (#11). A parte dos alertas trocou: antes a API respondia 403 (alertas desligados); agora há 0 alertas abertos. Resumo sem mudança (9 de 10).
 
 ### 09/11/2026 (ciclo de 07/11/2026; critério 10 revisto em 10/11/2026)
 
