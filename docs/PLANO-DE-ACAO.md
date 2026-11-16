@@ -178,4 +178,4 @@ Timebox: 45 min (ciclo completo).
 4. Fundo inerte com a confirmação aberta e axe na página inteira (#19).
 5. `docs/DEPLOY.md` no fluxo atual (PR, sem push na `master`).
 
-**Vira issue.** O que sobrar para o responsável (#11, #12) segue nas issues dele; próximos passos do agente em issues novas.
+**Vira issue.** Agente: #27 (tela de edição no navegador), #28 (Express 5), #29 (EJS 7 e `better-sqlite3` 13), #30 (`<dialog>` nativo). Responsável: #25 (mesclar o ciclo na `master`), #26 (ligar o Dependabot), e seguem #11 e #12. A #15 pedia matriz no CI; virou o job `node24` separado, porque o ruleset exige os checks `raiz` e `interface` pelo nome.

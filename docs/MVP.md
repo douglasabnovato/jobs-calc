@@ -1,44 +1,59 @@
 # MVP — jobs-calc
 
-> Criado em 02/11/2026. Revisto em 09/11/2026 (ciclo de 07/11/2026). **Nível: Estudo (N1).** Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows com Node 24.22.1 (`better-sqlite3` 12 sem gravar no lock) e no CI com Node 22 no `ubuntu-latest`. Não houve teste com pessoas nem em aparelho real.
+> Criado em 02/11/2026. Revisto em 16/11/2026 (ciclo de 16/11/2026). **Nível: Estudo (N1).** Os critérios 5 e 7 não se aplicam ao N1 e saem da conta. Testado no Windows com Node 24.22.1 e no CI com Node 22 e Node 24 no `ubuntu-latest`. Não houve teste com pessoas nem em aparelho real.
 
 **Resumo:** 9 de 10 aplicáveis atendidos
 **Finalizado:** sim
 
-O critério que falta depende do responsável e tem issue com o rótulo `depende-do-responsavel`: 9 (#11). O 10 passou a "Atende" em 10/11/2026, com a `master` protegida (#10).
+O critério que falta depende do responsável e tem issue com o rótulo `depende-do-responsavel`: 9 (#11).
 
-**Correção de honestidade (09/11/2026).** A tabela de 06/11 dizia que as telas funcionavam no navegador. Não funcionavam: todo formulário (perfil, job, exclusão) recebia 403 "Origem não permitida.", porque o `helmet` manda `Referrer-Policy: no-referrer` e, com isso, o Chrome envia `Origin: null`, que o `sameOrigin` recusava. Os testes com `supertest` não mandam `Origin` e não pegavam. O teste de interface achou; corrigido com `Referrer-Policy: same-origin` (commit `ecc9500`).
+**Correção de honestidade (16/11/2026).** A tabela de 07/11 dizia "axe nos modos claro e escuro". O CSS não tem `prefers-color-scheme` nem outro tema escuro: o projeto "escuro" do Playwright repetia a tela clara. O app não tem tema escuro próprio; o projeto saiu e a contagem de testes de interface caiu de 16 para 8, sem perder cobertura.
 
-## Critérios (07/11/2026; critério 10 revisto em 10/11/2026)
+## Critérios (16/11/2026)
 
 | # | Critério | Como verificar | Situação | Evidência e data |
 |---|---|---|---|---|
-| 1 | Problema e público claros | Dá para explicar em uma frase | Atende: freelancers calculam o valor de um job a partir do próprio perfil. | README, 06/11/2026 |
-| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: seção "Hipótese"; sem validação com pessoas. | 06/11/2026 |
-| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende: no navegador (Chromium, Playwright 1.65), o teste salva o perfil (R$ 5.200, 5 h, 5 dias, 4 semanas) e vê "R$ 52,00" e "100 horas"; cria um job de 2 h/dia e 10 h e vê "5 dias para a entrega" e "R$ 520,00"; exclui o job só com teclado (Enter, Tab, Enter) e vê "Job excluído."; Esc fecha a confirmação e devolve o foco. Modos claro e escuro. | `npm run test:e2e`: 16 de 16 no CI do PR #18 (run 42627537409), 09/11/2026 |
-| 4 | Escopo enxuto | O que não entra está registrado | Atende: seção "Fora do MVP". | 06/11/2026 |
+| 1 | Problema e público claros | Dá para explicar em uma frase | Atende: freelancers calculam o valor de um job a partir do próprio perfil. | README, 16/11/2026 |
+| 2 | Hipótese a validar | Existe uma aposta escrita, com meta | Atende: seção "Hipótese", com meta e "saberemos quando"; sem validação com pessoas. | Este arquivo, 16/11/2026 |
+| 3 | Fluxo principal completo | Uma pessoa conclui sem ajuda | Atende: no Chromium (Playwright 1.65), o teste salva o perfil (R$ 5.200, 5 h, 5 dias, 4 semanas) e vê "R$ 52,00" e "100 horas"; cria um job de 2 h/dia e 10 h e vê "5 dias para a entrega" e "R$ 520,00"; exclui o job só com teclado (Enter, Tab, Enter) e vê "Job excluído."; Esc fecha a confirmação e devolve o foco. Os formulários são enviados pelo navegador, com `Origin`. | `npm run test:e2e`: 8 de 8 no job `interface` do [run 43804302541](https://github.com/douglasabnovato/jobs-calc/actions/runs/43804302541) (PR #24), 16/11/2026 |
+| 4 | Escopo enxuto | O que não entra está registrado | Atende: seção "Fora do MVP". | 16/11/2026 |
 | 5 | Medição de uso | A métrica principal é coletada | Não se aplica (N1). | Decisão 2 do processo |
-| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: 404, 422 com erro por campo, 500 e POST de outra origem (403) com teste; percentual fora de 10 a 100 dá erro no campo; no navegador, job vazio mostra "Revise os campos destacados". | `npm test` 15 de 15 e `test:e2e`, 09/11/2026 |
+| 6 | Falhas tratadas | Erro, vazio e carregamento têm resposta clara | Atende: 404, 422 com erro por campo, 500, POST de outra origem e POST sem `Origin` nem `Referer` (403) com teste; percentual fora de 10 a 100 dá erro no campo; painel vazio mostra "Nenhum job cadastrado"; no navegador, job vazio mostra "Revise os campos destacados". | `npm test`: 17 de 17 nos jobs `raiz` (Node 22) e `node24` do run 43804302541, 16/11/2026 |
 | 7 | Desempenho aceitável | LCP de até 2,5 s no celular | Não se aplica (N1). | Decisão 2 do processo |
-| 8 | Acessibilidade básica | axe e teclado | Atende: axe (todas as regras) sem violações em `/` com card, `/job`, `/profile`, 404 e no diálogo de exclusão, nos modos claro e escuro; corrigidos neste ciclo o título do diálogo (h3 → h2, `heading-order`) e as animações, que agora respeitam `prefers-reduced-motion`; exclusão só com teclado. O fundo do diálogo ainda não fica inerte (#19). | `tests/e2e/axe.spec.js`, CI do PR #18, 09/11/2026 |
-| 9 | Segurança e conformidade | Riscos decididos | Parcial: `npm audit` sem alertas; o banco com a renda mensal saiu do Git em 02/11, mas segue no histórico; decidir é do responsável. | #11 |
-| 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: ruleset `principal-protegida` ativo na `master` (exige PR, bloqueia force push e exclusão); o workflow `CI` (unidade e interface) roda em PR e push para `master` e `developer/**`. | `gh api repos/douglasabnovato/jobs-calc/rulesets`, 10/11/2026; #10 |
-| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 15 testes de unidade e 16 de interface (8 por modo de cor). | CI do PR #18, 09/11/2026 |
-| 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json`, inclusive `npm run test:e2e`; correção do que a tabela de 06/11 dizia sobre o navegador. | README, 09/11/2026 |
+| 8 | Acessibilidade básica | axe e teclado | Atende: axe (todas as regras) sem violações em `/` com card, `/job`, `/profile`, 404 e na página inteira com a confirmação de exclusão aberta, em largura de desktop; com a confirmação aberta, o fundo fica `inert` (#19); exclusão só com teclado e Esc devolve o foco. O app não tem tema escuro próprio: o axe roda só no tema claro, que é o único. | `tests/e2e/axe.spec.js` e `tests/e2e/fluxo.spec.js`, job `interface` do run 43804302541, 16/11/2026 |
+| 9 | Segurança e conformidade | Riscos decididos | Parcial: `npm audit --omit=dev` com 0 vulnerabilidades (16/11/2026; o Dependabot está desligado, a API devolve 403); nenhum segredo no código; o banco com a renda mensal saiu do Git em 02/11, mas segue no histórico; decidir é do responsável. | #11 |
+| 10 | Entrega confiável | CI verde antes de entrar na principal | Atende: ruleset `principal-protegida` ativo na `master`, com PR obrigatório, bloqueio de force push e exclusão e os checks `raiz` e `interface` obrigatórios; o workflow `CI` roda em PR e push para `master` e `developer/**`. | `gh api repos/douglasabnovato/jobs-calc/rulesets/26932542`, 16/11/2026: `required_status_checks` com `interface` e `raiz` |
+| 11 | Testes dos fluxos críticos | Testes automatizados no CI | Atende: 17 testes de unidade (Node 22 e 24) e 8 de interface, sem testes pulados. | Run 43804302541: `# skipped 0` no `raiz`, `skipped 0` no `node24`, `8 passed` no `interface`, 16/11/2026 |
+| 12 | Documentação honesta | O README ensina a rodar | Atende: comandos conferidos com o `package.json` (`dev`, `test`, `test:e2e`); sem link publicado, porque `https://jobs-calc.onrender.com` deu 404 em 16/11/2026; correção do tema escuro acima. | README, 16/11/2026 |
 
-## Hipótese (proposta)
+## Hipótese
 
-Praticar Node e SQLite: calcular o valor de um job em menos de 1 minuto, entendendo de onde vem o valor da hora, agora com a parte do tempo que é cobrada do cliente (#13).
+Acreditamos que, partindo do próprio perfil, quem trabalha como freelancer calcula o valor de um job em menos de 1 minuto, entendendo de onde vem o valor da hora e a parte do tempo cobrada do cliente (#13). Saberemos quando o teste no navegador fizer o percurso perfil → job → painel sem ajuda, com o valor certo na tela, e o CI ficar verde. Meta de estudo (N1): praticar Node, Express e SQLite com testes no navegador.
 
 ## Fora do MVP
 
-Faturamento, contas de clientes, impostos e despesas no cálculo.
+Faturamento, contas de clientes, impostos e despesas no cálculo, tema escuro.
 
-## Neste ciclo (07/11/2026)
+## Neste ciclo (16/11/2026)
 
-Formulários voltam a salvar no navegador; percentual de horas cobradas no perfil (#13); testes de interface com Playwright e axe no CI (#14); título do diálogo e animações acessíveis. Detalhes em [PLANO-DE-ACAO.md](PLANO-DE-ACAO.md), seção "Ciclo de 07/11/2026".
+POST sem `Origin` e sem `Referer` passa a receber 403 (#21); fundo inerte com a confirmação de exclusão aberta (#19); `better-sqlite3` 12 e testes também no Node 24 (#15); o projeto "escuro" do Playwright saiu; `docs/DEPLOY.md` no fluxo atual. Detalhes em [PLANO-DE-ACAO.md](PLANO-DE-ACAO.md), seção "Ciclo de 16/11/2026".
 
 ## Histórico
+
+### 09/11/2026 (ciclo de 07/11/2026; critério 10 revisto em 10/11/2026)
+
+Resumo da época: 9 de 10 aplicáveis atendidos, Finalizado: sim. A linha do critério 8 dizia "modos claro e escuro", o que não valia: o app não tem tema escuro (correção acima).
+
+| # | Critério | Situação (07/11/2026) |
+|---|---|---|
+| 3 | Fluxo principal completo | Atende: Playwright no CI do PR #18 (run 42627537409), 16 de 16. |
+| 6 | Falhas tratadas | Atende: 15 testes de unidade. |
+| 8 | Acessibilidade básica | Atende: axe sem violações; diálogo com h2; animações com `prefers-reduced-motion`. |
+| 9 | Segurança e conformidade | Parcial: #11. |
+| 10 | Entrega confiável | Atende desde 10/11: ruleset na `master` (#10). |
+| 11 | Testes dos fluxos críticos | Atende: 15 de unidade e 16 de interface. |
+
+Os demais critérios estavam como na tabela atual. Correção de 09/11/2026: a tabela de 06/11 dizia que as telas funcionavam no navegador, mas todo POST pelo Chrome dava 403 por `Origin: null`; corrigido com `Referrer-Policy: same-origin` (commit `ecc9500`).
 
 ### 06/11/2026 (ciclo de 03/11/2026)
 
