@@ -195,5 +195,7 @@ test("POST sem corpo responde 422 com erro por campo, não 500 (Express 5 deixa 
   for (const url of ["/job", `/job/${id}`, "/profile"]) {
     const res = await post(app, url).expect(422);
     assert.match(res.text, /aria-invalid="true"/, url);
+    /* Com req.body = {}, a tela mostra o que foi enviado (nada), não os valores salvos */
+    assert.match(res.text, /name="name"[^>]*value=""/, url);
   }
 });
