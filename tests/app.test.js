@@ -187,3 +187,13 @@ test("foco visível em duas cores no CSS", () => {
   const css = require("fs").readFileSync(require("path").join(__dirname, "..", "public", "styles", "main.css"), "utf8");
   assert.match(css, /:focus-visible \{ outline: 3px solid #1565C0;[^}]*box-shadow: 0 0 0 6px #FFFFFF/);
 });
+
+test("POST sem corpo responde 422 com erro por campo, não 500 (Express 5 deixa req.body vazio, #28)", async () => {
+  const { app, repos } = build();
+  repos.jobs.create({ name: "Job antigo", dailyHours: 2, totalHours: 10, createdAt: NOW });
+  const id = repos.jobs.all()[0].id;
+  for (const url of ["/job", `/job/${id}`, "/profile"]) {
+    const res = await post(app, url).expect(422);
+    assert.match(res.text, /aria-invalid="true"/, url);
+  }
+});
