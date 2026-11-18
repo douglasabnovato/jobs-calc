@@ -19,7 +19,7 @@
   "author": "@douglasabnovato",
   "license": "MIT",
   "dependencies": {
-    "better-sqlite3": "^12.11.1",
+    "better-sqlite3": "^13.2.0",
     "ejs": "^7.0.2",
     "express": "^5.3.0",
     "helmet": "^8.1.0"
