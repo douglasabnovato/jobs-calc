@@ -59,7 +59,7 @@ Quem trabalha como freelancer costuma cobrar "no chute". O JobsCalc parte da ren
 
 ## Stack
 
-Node 22 ou 24 · Express 4 · EJS · SQLite (better-sqlite3) · helmet · node:test + supertest · Playwright + axe-core.
+Node 22 ou 24 · Express 5 · EJS · SQLite (better-sqlite3) · helmet · node:test + supertest · Playwright + axe-core.
 
 ## Como rodar
 
@@ -67,9 +67,9 @@ Node 22 ou 24 · Express 4 · EJS · SQLite (better-sqlite3) · helmet · node:t
 npm install
 cp .env.example .env    # opcional
 npm run dev             # http://localhost:3000
-npm test                # 17 testes de unidade
+npm test                # 18 testes de unidade
 npx playwright install chromium   # uma vez
-npm run test:e2e        # 8 testes no navegador (fluxo e axe)
+npm run test:e2e        # 11 testes no navegador (fluxo, edição e axe)
 ```
 
 Para reaproveitar dados de uma cópia local antiga do banco, que não está mais no Git, rode uma vez com `DATABASE_FILE=./dbjobscalc.sqlite`: a migration converte os valores para centavos e mantém os jobs.
