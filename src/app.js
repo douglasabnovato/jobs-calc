@@ -34,6 +34,11 @@ function createApp({ repos, now = () => Date.now(), auth = {}, trustProxy = fals
   app.use(basicAuth(auth.user, auth.password));
   app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "1h" }));
   app.use(express.urlencoded({ extended: false, limit: "10kb" }));
+  /* No Express 5, POST sem corpo deixa req.body undefined; as rotas esperam um objeto (#28) */
+  app.use((req, res, next) => {
+    if (req.body === undefined) req.body = {};
+    next();
+  });
   app.use(sameOrigin);
 
   /* Lê o id numérico da rota ou devolve null */
